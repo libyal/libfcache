@@ -1,0 +1,22 @@
+Source: libfcache
+Section: unknown
+Priority: extra
+Maintainer: Joachim Metz <joachim.metz@gmail.com>
+Build-Depends: debhelper (>= 7), autotools-dev
+Standards-Version: 3.8.3
+Homepage: http://code.google.com/p/libflibs/
+
+Package: libfcache
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Library to provide generic file data cache functions
+ libfcache is a library to provide generic file data cache functions.
+
+Package: libfcache-dev
+Section: libdevel
+Architecture: any
+Depends: libfcache (= ${Source-Version})
+Description: Header files and libraries for developing applications for libfcache
+ Header files and libraries for developing applications for libfcache.
+
