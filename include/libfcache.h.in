@@ -1,7 +1,7 @@
 /*
  * Library to provide generic file data cache functions
  *
- * Copyright (c) 2010-2012, Joachim Metz <joachim.metz@gmail.com>
+ * Copyright (c) 2010-2013, Joachim Metz <joachim.metz@gmail.com>
  *
  * Refer to AUTHORS for acknowledgements.
  *
@@ -25,6 +25,7 @@
 #include <libfcache/definitions.h>
 #include <libfcache/error.h>
 #include <libfcache/extern.h>
+#include <libfcache/features.h>
 #include <libfcache/types.h>
 
 #include <stdio.h>

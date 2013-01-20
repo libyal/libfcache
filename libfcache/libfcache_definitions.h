@@ -1,7 +1,7 @@
 /*
  * The internal definitions
  *
- * Copyright (c) 2010-2012, Joachim Metz <joachim.metz@gmail.com>
+ * Copyright (c) 2010-2013, Joachim Metz <joachim.metz@gmail.com>
  *
  * Refer to AUTHORS for acknowledgements.
  *
@@ -33,11 +33,11 @@
  * for local use of libfcache
  */
 #else
-#define LIBFCACHE_VERSION					20121211
+#define LIBFCACHE_VERSION					20130120
 
 /* The libfcache version string
  */
-#define LIBFCACHE_VERSION_STRING				"20121211"
+#define LIBFCACHE_VERSION_STRING				"20130120"
 
 /* The cache value flags definitions
  */
