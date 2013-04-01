@@ -42,6 +42,6 @@ distclean: clean
 	/bin/rm -f Makefile
 
 splint:
-	@echo "Running splint on libfcache ..." 
-	-splint -preproc -redef $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(libfcache_la_SOURCES) 
+	@echo "Running splint on libfcache ..."
+	-splint -preproc -redef $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(libfcache_la_SOURCES)
 
