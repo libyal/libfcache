@@ -1,7 +1,11 @@
 TODO
 * add tests
-* update manuals
 * update msvscpp files
+
+20130404
+* textual changes
+* updated include header
+* updated libfcache.3 man page
 
 20130401
 * 2013 update

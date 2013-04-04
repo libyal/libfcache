@@ -30,6 +30,7 @@
 #include "libfcache_types.h"
 
 /* Creates a cache value
+ * Make sure the value cache_value is referencing, is set to NULL
  * Returns 1 if successful or -1 on error
  */
 int libfcache_cache_value_initialize(
@@ -105,7 +106,7 @@ on_error:
 	return( -1 );
 }
 
-/* Frees the cache value
+/* Frees a cache value
  * Returns 1 if successful or -1 on error
  */
 int libfcache_cache_value_free(
