@@ -39,8 +39,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\include;..\..\common;..\..\libcstring;..\..\libcerror"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;HAVE_LOCAL_LIBCSTRING;HAVE_LOCAL_LIBCERROR;LIBFCACHE_DLL_EXPORT"
+				AdditionalIncludeDirectories="..\..\include;..\..\common;..\..\libcstring;..\..\libcerror;..\..\libcdata"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;HAVE_LOCAL_LIBCSTRING;HAVE_LOCAL_LIBCERROR;HAVE_LOCAL_LIBCDATA;LIBFCACHE_DLL_EXPORT"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 				CompileAs="1"
@@ -109,8 +109,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\include;..\..\common;..\..\libcstring;..\..\libcerror"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;HAVE_LOCAL_LIBCSTRING;HAVE_LOCAL_LIBCERROR;LIBFCACHE_DLL_EXPORT"
+				AdditionalIncludeDirectories="..\..\include;..\..\common;..\..\libcstring;..\..\libcerror;..\..\libcdata"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;HAVE_LOCAL_LIBCSTRING;HAVE_LOCAL_LIBCERROR;HAVE_LOCAL_LIBCDATA;LIBFCACHE_DLL_EXPORT"
 				BasicRuntimeChecks="3"
 				SmallerTypeCheck="true"
 				RuntimeLibrary="3"
@@ -172,11 +172,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\libfcache\libfcache_error.c"
+				RelativePath="..\..\libfcache\libfcache_cache.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\libfcache\libfcache_identifier.c"
+				RelativePath="..\..\libfcache\libfcache_cache_value.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\libfcache\libfcache_error.c"
 				>
 			</File>
 			<File
@@ -190,6 +194,18 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\libfcache\libfcache_cache.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\libfcache\libfcache_cache_value.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\libfcache\libfcache_date_time.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\libfcache\libfcache_definitions.h"
 				>
 			</File>
@@ -202,15 +218,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\libfcache\libfcache_identifier.h"
+				RelativePath="..\..\libfcache\libfcache_libcdata.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\libfcache\libfcache_libcerror.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\libfcache\libfcache_libcstring.h"
 				>
 			</File>
 			<File
@@ -231,6 +243,10 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath="..\..\libfcache\libfcache.rc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
