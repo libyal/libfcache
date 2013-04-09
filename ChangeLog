@@ -1,6 +1,9 @@
 TODO
 * add tests
 
+20130409
+* renamed libfcache_cache_clear to libfcache_cache_empty
+
 20130407
 * updated dependencies
 

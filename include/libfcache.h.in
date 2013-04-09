@@ -121,11 +121,11 @@ int libfcache_cache_clone(
      libfcache_cache_t *source_cache,
      libfcache_error_t **error );
 
-/* Clears the cache of the cache
+/* Empties the cache
  * Returns 1 if successful or -1 on error
  */
 LIBFCACHE_EXTERN \
-int libfcache_cache_clear(
+int libfcache_cache_empty(
      libfcache_cache_t *cache,
      libfcache_error_t **error );
 

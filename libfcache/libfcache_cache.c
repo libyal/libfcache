@@ -251,15 +251,15 @@ int libfcache_cache_clone(
 	return( 1 );
 }
 
-/* Clears the cache of the cache
+/* Empties the cache
  * Returns 1 if successful or -1 on error
  */
-int libfcache_cache_clear(
+int libfcache_cache_empty(
      libfcache_cache_t *cache,
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_clear";
+	static char *function                     = "libfcache_cache_empty";
 
 	if( cache == NULL )
 	{

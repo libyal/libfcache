@@ -67,7 +67,7 @@ int libfcache_cache_clone(
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \
-int libfcache_cache_clear(
+int libfcache_cache_empty(
      libfcache_cache_t *cache,
      libcerror_error_t **error );
 
