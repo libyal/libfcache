@@ -33,11 +33,11 @@
  * for local use of libfcache
  */
 #else
-#define LIBFCACHE_VERSION					20130409
+#define LIBFCACHE_VERSION					20130718
 
 /* The libfcache version string
  */
-#define LIBFCACHE_VERSION_STRING				"20130409"
+#define LIBFCACHE_VERSION_STRING				"20130718"
 
 /* The cache value flags definitions
  */

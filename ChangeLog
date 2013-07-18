@@ -1,6 +1,9 @@
 TODO
 * add tests
 
+20130718
+* remove unnecessary restriction in library include headers
+
 20130409
 * renamed libfcache_cache_clear to libfcache_cache_empty
 
