@@ -3,7 +3,9 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/common \
 	@LIBCSTRING_CPPFLAGS@ \
 	@LIBCERROR_CPPFLAGS@ \
-	@LIBCDATA_CPPFLAGS@
+	@LIBCTHREADS_CPPFLAGS@ \
+	@LIBCDATA_CPPFLAGS@ \
+	@PTHREAD_CPPFLAGS@
 
 lib_LTLIBRARIES = libfcache.la
 
@@ -24,7 +26,9 @@ libfcache_la_SOURCES = \
 libfcache_la_LIBADD = \
 	@LIBCSTRING_LIBADD@ \
 	@LIBCERROR_LIBADD@ \
-	@LIBCDATA_LIBADD@
+	@LIBCTHREADS_LIBADD@ \
+	@LIBCDATA_LIBADD@ \
+	@PTHREAD_LIBADD@
 
 libfcache_la_LDFLAGS = -no-undefined -version-info 1:0:0
 
