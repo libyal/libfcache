@@ -1,6 +1,9 @@
 TODO
 * add tests
 
+20130922
+* updated dependencies
+
 20130908
 * updated dependencies
 * added libcthreads build support
