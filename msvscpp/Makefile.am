@@ -3,7 +3,7 @@ MSVSCPP_FILES = \
 	libcerror/libcerror.vcproj \
 	libcstring/libcstring.vcproj \
 	libcthreads/libcthreads.vcproj \
-	libfcache_dll/libfcache_dll.vcproj \
+	libfcache/libfcache.vcproj \
 	libfcache.sln
 
 SCRIPT_FILES = \
