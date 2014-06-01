@@ -13,7 +13,7 @@ libfcache_la_SOURCES = \
 	libfcache.c \
 	libfcache_cache.c libfcache_cache.h \
 	libfcache_cache_value.c libfcache_cache_value.h \
-	libfcache_date_time.h \
+	libfcache_date_time.c libfcache_date_time.h \
 	libfcache_definitions.h \
 	libfcache_error.c libfcache_error.h \
 	libfcache_extern.h \

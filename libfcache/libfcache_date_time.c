@@ -19,9 +19,6 @@
  * along with this software.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined( _LIBFCACHE_DATE_TIME_H )
-#define _LIBFCACHE_DATE_TIME_H
-
 #include <common.h>
 
 #if defined( TIME_WITH_SYS_TIME )
@@ -33,22 +30,32 @@
 #include <time.h>
 #endif
 
-#include "libfcache_extern.h"
+#include "libfcache_date_time.h"
 #include "libfcache_libcerror.h"
 #include "libfcache_types.h"
 
-#if defined( __cplusplus )
-extern "C" {
-#endif
-
-LIBFCACHE_EXTERN \
+/* Retrieves the cache value timestamp
+ * Returns 1 if successful or -1 on error
+ */
 int libfcache_date_time_get_timestamp(
      time_t *timestamp,
-     libcerror_error_t **error );
+     libcerror_error_t **error )
+{
+	static char *function = "libfcache_date_time_get_timestamp";
 
-#if defined( __cplusplus )
+	if( timestamp == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid timestamp.",
+		 function );
+
+		return( -1 );
+	}
+	*timestamp = time( NULL );
+
+	return( 1 );
 }
-#endif
-
-#endif
 
