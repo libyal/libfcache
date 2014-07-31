@@ -10,8 +10,16 @@ Package: libfcache
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: libfcache-dbg
 Description: Library to provide generic file data cache functions
  libfcache is a library to provide generic file data cache functions.
+
+Package: libfcache-dbg
+Architecture: any
+Section: debug
+Depends: libfcache (= ${Source-Version}), ${misc:Depends}
+Description: Debugging symbols for libfcache
+ Debugging symbols for libfcache.
 
 Package: libfcache-dev
 Section: libdevel
