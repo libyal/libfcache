@@ -74,6 +74,11 @@ int libfcache_cache_value_free(
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \
+int libfcache_cache_value_clear(
+     libfcache_cache_value_t *cache_value,
+     libcerror_error_t **error );
+
+LIBFCACHE_EXTERN \
 int libfcache_cache_value_get_identifier(
      libfcache_cache_value_t *cache_value,
      int *file_index,
