@@ -1,4 +1,6 @@
-See:
-* http://code.google.com/p/libfcache/wiki/Building
-* README.macosx
+libfcache is a library to provide generic file data cache functions.
+
+For more information see:
+* Project documentation: https://github.com/libyal/libfcache/wiki/Home
+* How to build from source: https://github.com/libyal/libfcache/wiki/Building
 
