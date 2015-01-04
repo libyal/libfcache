@@ -1,13 +1,12 @@
 Source: libfcache
-Section: unknown
+Section: libs
 Priority: extra
 Maintainer: Joachim Metz <joachim.metz@gmail.com>
 Build-Depends: debhelper (>= 7), autotools-dev
-Standards-Version: 3.8.3
+Standards-Version: 3.9.5
 Homepage: https://github.com/libyal/libfcache/
 
 Package: libfcache
-Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: libfcache-dbg
@@ -17,14 +16,14 @@ Description: Library to provide generic file data cache functions
 Package: libfcache-dbg
 Architecture: any
 Section: debug
-Depends: libfcache (= ${Source-Version}), ${misc:Depends}
+Depends: libfcache (= ${binary:Version}), ${misc:Depends}
 Description: Debugging symbols for libfcache
  Debugging symbols for libfcache.
 
 Package: libfcache-dev
 Section: libdevel
 Architecture: any
-Depends: libfcache (= ${Source-Version})
+Depends: libfcache (= ${binary:Version}), ${misc:Depends}
 Description: Header files and libraries for developing applications for libfcache
  Header files and libraries for developing applications for libfcache.
 
