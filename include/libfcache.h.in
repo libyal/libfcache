@@ -121,6 +121,14 @@ int libfcache_cache_free(
      libfcache_cache_t **cache,
      libfcache_error_t **error );
 
+/* Empties the cache
+ * Returns 1 if successful or -1 on error
+ */
+LIBFCACHE_EXTERN \
+int libfcache_cache_empty(
+     libfcache_cache_t *cache,
+     libfcache_error_t **error );
+
 /* Clones (duplicates) the cache, not the cache values
  * Returns 1 if successful or -1 on error
  */
@@ -130,12 +138,13 @@ int libfcache_cache_clone(
      libfcache_cache_t *source_cache,
      libfcache_error_t **error );
 
-/* Empties the cache
+/* Resizes the cache
  * Returns 1 if successful or -1 on error
  */
 LIBFCACHE_EXTERN \
-int libfcache_cache_empty(
+int libfcache_cache_resize(
      libfcache_cache_t *cache,
+     int maximum_cache_entries,
      libfcache_error_t **error );
 
 /* Retrieves the number of entries of the cache

@@ -178,6 +178,48 @@ int libfcache_cache_free(
 	return( result );
 }
 
+/* Empties the cache
+ * Returns 1 if successful or -1 on error
+ */
+int libfcache_cache_empty(
+     libfcache_cache_t *cache,
+     libcerror_error_t **error )
+{
+	libfcache_internal_cache_t *internal_cache = NULL;
+	static char *function                     = "libfcache_cache_empty";
+
+	if( cache == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache = (libfcache_internal_cache_t *) cache;
+
+	if( libcdata_array_clear(
+	     internal_cache->entries,
+	     (int (*)(intptr_t **, libcerror_error_t **)) &libfcache_cache_value_free,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_FINALIZE_FAILED,
+		 "%s: unable to clear entries array.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache->number_of_cache_values = 0;
+
+	return( 1 );
+}
+
 /* Clones (duplicates) the cache, not the cache values
  * Returns 1 if successful or -1 on error
  */
@@ -251,15 +293,16 @@ int libfcache_cache_clone(
 	return( 1 );
 }
 
-/* Empties the cache
+/* Resizes the cache
  * Returns 1 if successful or -1 on error
  */
-int libfcache_cache_empty(
+int libfcache_cache_resize(
      libfcache_cache_t *cache,
+     int maximum_cache_entries,
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_empty";
+	static char *function                      = "libfcache_cache_resize";
 
 	if( cache == NULL )
 	{
@@ -274,22 +317,21 @@ int libfcache_cache_empty(
 	}
 	internal_cache = (libfcache_internal_cache_t *) cache;
 
-	if( libcdata_array_clear(
+	if( libcdata_array_resize(
 	     internal_cache->entries,
+	     maximum_cache_entries,
 	     (int (*)(intptr_t **, libcerror_error_t **)) &libfcache_cache_value_free,
 	     error ) != 1 )
 	{
 		libcerror_error_set(
 		 error,
 		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
-		 LIBCERROR_RUNTIME_ERROR_FINALIZE_FAILED,
-		 "%s: unable to clear entries array.",
+		 LIBCERROR_RUNTIME_ERROR_RESIZE_FAILED,
+		 "%s: unable to resize entries array.",
 		 function );
 
 		return( -1 );
 	}
-	internal_cache->number_of_cache_values = 0;
-
 	return( 1 );
 }
 

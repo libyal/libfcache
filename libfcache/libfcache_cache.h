@@ -61,14 +61,20 @@ int libfcache_cache_free(
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \
+int libfcache_cache_empty(
+     libfcache_cache_t *cache,
+     libcerror_error_t **error );
+
+LIBFCACHE_EXTERN \
 int libfcache_cache_clone(
      libfcache_cache_t **destination_cache,
      libfcache_cache_t *source_cache,
      libcerror_error_t **error );
 
-LIBFCACHE_EXTERN \
-int libfcache_cache_empty(
+LIBCDATA_EXTERN \
+int libfcache_cache_resize(
      libfcache_cache_t *cache,
+     int maximum_cache_entries,
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \

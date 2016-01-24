@@ -1,4 +1,4 @@
-.Dd January  4, 2015
+.Dd January 24, 2016
 .Dt libfcache 3
 .Os libfcache
 .Sh NAME
@@ -31,9 +31,11 @@ Cache functions
 .Ft int
 .Fn libfcache_cache_free "libfcache_cache_t **cache, libfcache_error_t **error"
 .Ft int
+.Fn libfcache_cache_empty "libfcache_cache_t *cache, libfcache_error_t **error"
+.Ft int
 .Fn libfcache_cache_clone "libfcache_cache_t **destination_cache, libfcache_cache_t *source_cache, libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_empty "libfcache_cache_t *cache, libfcache_error_t **error"
+.Fn libfcache_cache_resize "libfcache_cache_t *cache, int maximum_cache_entries, libfcache_error_t **error"
 .Ft int
 .Fn libfcache_cache_get_number_of_entries "libfcache_cache_t *cache, int *number_of_entries, libfcache_error_t **error"
 .Ft int
