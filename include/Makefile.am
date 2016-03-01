@@ -1,12 +1,12 @@
 include_HEADERS = \
-        libfcache.h
+	libfcache.h
 
 pkginclude_HEADERS = \
-        libfcache/definitions.h \
-        libfcache/error.h \
-        libfcache/extern.h \
-        libfcache/features.h \
-        libfcache/types.h
+	libfcache/definitions.h \
+	libfcache/error.h \
+	libfcache/extern.h \
+	libfcache/features.h \
+	libfcache/types.h
 
 EXTRA_DIST = \
 	libfcache.h.in \
