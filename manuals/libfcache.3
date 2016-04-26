@@ -1,4 +1,4 @@
-.Dd January 24, 2016
+.Dd April 26, 2016
 .Dt libfcache 3
 .Os libfcache
 .Sh NAME
@@ -56,8 +56,6 @@ Cache value functions
 .Fn libfcache_cache_value_get_value "libfcache_cache_value_t *cache_value, intptr_t **value, libfcache_error_t **error"
 .Ft int
 .Fn libfcache_cache_value_set_value "libfcache_cache_value_t *cache_value, intptr_t *value, int (*free_value)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
-.Pp
-Date time functions
 .Sh DESCRIPTION
 The
 .Fn libfcache_get_version

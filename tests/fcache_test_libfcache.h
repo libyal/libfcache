@@ -1,5 +1,5 @@
 /*
- * The libfcache header wrapper
+ * The internal libfcache header
  *
  * Copyright (C) 2010-2016, Joachim Metz <joachim.metz@gmail.com>
  *
@@ -24,14 +24,14 @@
 
 #include <common.h>
 
-/* If libtool DLL support is enabled set LIBFCACHE_DLL_IMPORT
- * before including libfcache.h
+/* If Cygwin libtool DLL support is enabled and do not want to create static
+ * executables set LIBFCACHE_DLL_IMPORT before including libfcache.h
  */
-#if defined( _WIN32 ) && defined( DLL_IMPORT )
+#if defined( _WIN32 ) && defined( DLL_EXPORT ) && !defined( HAVE_STATIC_EXECUTABLES )
 #define LIBFCACHE_DLL_IMPORT
 #endif
 
 #include <libfcache.h>
 
-#endif
+#endif /* !defined( _FCACHE_TEST_LIBFCACHE_H ) */
 

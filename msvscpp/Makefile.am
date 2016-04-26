@@ -1,4 +1,5 @@
 MSVSCPP_FILES = \
+	fcache_test_get_version/fcache_test_get_version.vcproj \
 	libcdata/libcdata.vcproj \
 	libcerror/libcerror.vcproj \
 	libcstring/libcstring.vcproj \
