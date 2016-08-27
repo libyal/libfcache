@@ -20,7 +20,6 @@
  */
 
 #include <common.h>
-#include <file_stream.h>
 
 #if defined( HAVE_STDLIB_H ) || defined( WINAPI )
 #include <stdlib.h>
@@ -28,6 +27,7 @@
 
 #include "fcache_test_libcstring.h"
 #include "fcache_test_libfcache.h"
+#include "fcache_test_macros.h"
 #include "fcache_test_unused.h"
 
 /* Tests retrieving the library version
@@ -46,11 +46,15 @@ int fcache_test_get_version(
 	          LIBFCACHE_VERSION_STRING,
 	          9 );
 
-	if( result != 0 )
-	{
-		return( 0 );
-	}
+	FCACHE_TEST_ASSERT_EQUAL(
+	 "result",
+	 result,
+	 0 );
+
 	return( 1 );
+
+on_error:
+	return( 0 );
 }
 
 /* The main program
@@ -68,10 +72,13 @@ int main(
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argc )
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argv )
 
-	if( fcache_test_get_version() != 1 )
-	{
-		return( EXIT_FAILURE );
-	}
+	FCACHE_TEST_RUN(
+	 "libfcache_get_version",
+	 fcache_test_get_version() )
+
 	return( EXIT_SUCCESS );
+
+on_error:
+	return( EXIT_FAILURE );
 }
 

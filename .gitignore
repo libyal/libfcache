@@ -119,6 +119,7 @@ stamp-h[1-9]
 /include/libfcache/types.h
 /libfcache/libfcache.rc
 /libfcache/libfcache_definitions.h
+/tests/fcache_test_error
 /tests/fcache_test_get_version
 /tests/tmp*
 
