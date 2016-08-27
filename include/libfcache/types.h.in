@@ -208,5 +208,5 @@ typedef intptr_t libfcache_cache_value_t;
 }
 #endif
 
-#endif
+#endif /* !defined( _LIBFCACHE_TYPES_H ) */
 
