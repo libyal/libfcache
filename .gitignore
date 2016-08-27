@@ -121,6 +121,7 @@ stamp-h[1-9]
 /libfcache/libfcache_definitions.h
 /tests/fcache_test_cache
 /tests/fcache_test_cache_value
+/tests/fcache_test_date_time
 /tests/fcache_test_error
 /tests/fcache_test_get_version
 /tests/tmp*
