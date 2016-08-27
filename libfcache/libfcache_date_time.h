@@ -50,5 +50,5 @@ int libfcache_date_time_get_timestamp(
 }
 #endif
 
-#endif
+#endif /* !defined( _LIBFCACHE_DATE_TIME_H ) */
 

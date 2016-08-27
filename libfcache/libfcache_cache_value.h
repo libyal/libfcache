@@ -114,5 +114,5 @@ int libfcache_cache_value_set_value(
 }
 #endif
 
-#endif
+#endif /* !defined( _LIBFCACHE_INTERNAL_CACHE_VALUE_H ) */
 

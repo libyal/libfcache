@@ -266,6 +266,8 @@ int main(
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argc )
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argv )
 
+#if defined( __GNUC__ )
+
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_initialize",
 	 fcache_test_cache_value_initialize() )
@@ -273,6 +275,8 @@ int main(
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_free",
 	 fcache_test_cache_value_free() )
+
+#endif /* defined( __GNUC__ ) */
 
 	return( EXIT_SUCCESS );
 

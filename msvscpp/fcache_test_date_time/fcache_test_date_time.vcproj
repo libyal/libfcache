@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="fcache_test_cache_value"
-	ProjectGUID="{E95AEFE0-0C73-4CCA-9A3B-7E7DD4443BA5}"
-	RootNamespace="fcache_test_cache_value"
+	Name="fcache_test_date_time"
+	ProjectGUID="{32B98213-8BD1-4974-859B-4989D053B192}"
+	RootNamespace="fcache_test_date_time"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -176,11 +176,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\tests\fcache_test_cache_value.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\tests\fcache_test_memory.c"
+				RelativePath="..\..\tests\fcache_test_date_time.c"
 				>
 			</File>
 		</Filter>
@@ -199,10 +195,6 @@
 			</File>
 			<File
 				RelativePath="..\..\tests\fcache_test_macros.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\tests\fcache_test_memory.h"
 				>
 			</File>
 			<File
