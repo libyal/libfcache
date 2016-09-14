@@ -46,7 +46,7 @@ int fcache_test_get_version(
 	          LIBFCACHE_VERSION_STRING,
 	          9 );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 0 );
