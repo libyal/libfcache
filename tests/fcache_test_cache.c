@@ -49,7 +49,7 @@ int fcache_test_cache_initialize(
 	          16,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 1 );
@@ -66,7 +66,7 @@ int fcache_test_cache_initialize(
 	          &cache,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 1 );
@@ -86,7 +86,7 @@ int fcache_test_cache_initialize(
 	          16,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 -1 );
@@ -105,7 +105,7 @@ int fcache_test_cache_initialize(
 	          16,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 -1 );
@@ -136,7 +136,7 @@ int fcache_test_cache_initialize(
 	}
 	else
 	{
-		FCACHE_TEST_ASSERT_EQUAL(
+		FCACHE_TEST_ASSERT_EQUAL_INT(
 		 "result",
 		 result,
 		 -1 );
@@ -167,7 +167,7 @@ int fcache_test_cache_initialize(
 	}
 	else
 	{
-		FCACHE_TEST_ASSERT_EQUAL(
+		FCACHE_TEST_ASSERT_EQUAL_INT(
 		 "result",
 		 result,
 		 -1 );
@@ -217,7 +217,7 @@ int fcache_test_cache_free(
 	          NULL,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 -1 );
@@ -257,11 +257,11 @@ int main(
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_initialize",
-	 fcache_test_cache_initialize() )
+	 fcache_test_cache_initialize );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_free",
-	 fcache_test_cache_free() )
+	 fcache_test_cache_free );
 
 	return( EXIT_SUCCESS );
 

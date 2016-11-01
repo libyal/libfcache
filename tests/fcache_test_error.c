@@ -123,23 +123,23 @@ int main(
 
 	FCACHE_TEST_RUN(
 	 "libfcache_error_free",
-	 fcache_test_error_free() )
+	 fcache_test_error_free );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_error_fprint",
-	 fcache_test_error_fprint() )
+	 fcache_test_error_fprint );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_error_sprint",
-	 fcache_test_error_sprint() )
+	 fcache_test_error_sprint );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_error_backtrace_fprint",
-	 fcache_test_error_backtrace_fprint() )
+	 fcache_test_error_backtrace_fprint );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_error_backtrace_sprint",
-	 fcache_test_error_backtrace_sprint() )
+	 fcache_test_error_backtrace_sprint );
 
 	return( EXIT_SUCCESS );
 

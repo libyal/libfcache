@@ -39,7 +39,7 @@ enum LIBFCACHE_ERROR_DOMAINS
 	LIBFCACHE_ERROR_DOMAIN_INPUT			= (int) 'i',
 	LIBFCACHE_ERROR_DOMAIN_MEMORY			= (int) 'm',
 	LIBFCACHE_ERROR_DOMAIN_OUTPUT			= (int) 'o',
-	LIBFCACHE_ERROR_DOMAIN_RUNTIME			= (int) 'r',
+	LIBFCACHE_ERROR_DOMAIN_RUNTIME			= (int) 'r'
 };
 
 /* The argument error codes
@@ -208,6 +208,17 @@ enum LIBFCACHE_MEMORY_ERROR
 	LIBFCACHE_MEMORY_ERROR_SET_FAILED		= 3
 };
 
+/* The output error codes
+ */
+enum LIBFCACHE_OUTPUT_ERROR
+{
+	LIBFCACHE_OUTPUT_ERROR_GENERIC			= 0,
+
+	/* There is insuficient space to write the output
+	 */
+	LIBFCACHE_OUTPUT_ERROR_INSUFFICIENT_SPACE	= 1
+};
+
 /* The runtime error codes
  * to signify errors regarding runtime processing
  */
@@ -276,16 +287,5 @@ enum LIBFCACHE_RUNTIME_ERROR
 	LIBFCACHE_RUNTIME_ERROR_ABORT_REQUESTED		= 15
 };
 
-/* The output error codes
- */
-enum LIBFCACHE_OUTPUT_ERROR
-{
-	LIBFCACHE_OUTPUT_ERROR_GENERIC			= 0,
-
-	/* There is insuficient space to write the output
-	 */
-	LIBFCACHE_OUTPUT_ERROR_INSUFFICIENT_SPACE	= 1
-};
-
-#endif
+#endif /* !defined( _LIBFCACHE_ERROR_H ) */
 

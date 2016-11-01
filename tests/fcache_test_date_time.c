@@ -54,7 +54,7 @@ int fcache_test_date_time_get_timestamp(
 	          &timestamp,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 1 );
@@ -69,7 +69,7 @@ int fcache_test_date_time_get_timestamp(
 	          NULL,
 	          &error );
 
-	FCACHE_TEST_ASSERT_EQUAL(
+	FCACHE_TEST_ASSERT_EQUAL_INT(
 	 "result",
 	 result,
 	 -1 );
@@ -109,7 +109,7 @@ int main(
 
 	FCACHE_TEST_RUN(
 	 "libfcache_date_time_get_timestamp",
-	 fcache_test_date_time_get_timestamp() )
+	 fcache_test_date_time_get_timestamp );
 
 	return( EXIT_SUCCESS );
 
