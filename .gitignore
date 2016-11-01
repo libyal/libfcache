@@ -123,7 +123,7 @@ stamp-h[1-9]
 /tests/fcache_test_cache_value
 /tests/fcache_test_date_time
 /tests/fcache_test_error
-/tests/fcache_test_get_version
+/tests/fcache_test_support
 /tests/tmp*
 
 # Local library dependencies specific files

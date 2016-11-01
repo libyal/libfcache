@@ -22,7 +22,7 @@ check_PROGRAMS = \
 	fcache_test_cache_value \
 	fcache_test_date_time \
 	fcache_test_error \
-	fcache_test_get_version
+	fcache_test_support
 
 fcache_test_cache_SOURCES = \
 	fcache_test_cache.c \
@@ -73,14 +73,14 @@ fcache_test_error_LDADD = \
 	../libfcache/libfcache.la \
 	@LIBCSTRING_LIBADD@
 
-fcache_test_get_version_SOURCES = \
-	fcache_test_get_version.c \
+fcache_test_support_SOURCES = \
 	fcache_test_libcstring.h \
 	fcache_test_libfcache.h \
 	fcache_test_macros.h \
+	fcache_test_support.c \
 	fcache_test_unused.h
 
-fcache_test_get_version_LDADD = \
+fcache_test_support_LDADD = \
 	../libfcache/libfcache.la \
 	@LIBCSTRING_LIBADD@
 

@@ -3,7 +3,7 @@ MSVSCPP_FILES = \
 	fcache_test_cache_value/fcache_test_cache_value.vcproj \
 	fcache_test_date_time/fcache_test_date_time.vcproj \
 	fcache_test_error/fcache_test_error.vcproj \
-	fcache_test_get_version/fcache_test_get_version.vcproj \
+	fcache_test_support/fcache_test_support.vcproj \
 	libcdata/libcdata.vcproj \
 	libcerror/libcerror.vcproj \
 	libcstring/libcstring.vcproj \
