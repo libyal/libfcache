@@ -20,6 +20,8 @@
  */
 
 #include <common.h>
+#include <file_stream.h>
+#include <types.h>
 
 #if defined( HAVE_STDLIB_H ) || defined( WINAPI )
 #include <stdlib.h>
@@ -27,20 +29,19 @@
 
 #include "fcache_test_libfcache.h"
 #include "fcache_test_libcerror.h"
-#include "fcache_test_libcstring.h"
 #include "fcache_test_macros.h"
 #include "fcache_test_memory.h"
 #include "fcache_test_unused.h"
 
 #if defined( __GNUC__ )
 
-extern int libfcache_cache_value_initialize(
-            libfcache_cache_value_t **cache_value,
-            libcerror_error_t **error );
+int libfcache_cache_value_initialize(
+     libfcache_cache_value_t **cache_value,
+     libcerror_error_t **error );
 
-extern int libfcache_cache_value_free(
-            libfcache_cache_value_t **cache_value,
-            libcerror_error_t **error );
+int libfcache_cache_value_free(
+     libfcache_cache_value_t **cache_value,
+     libcerror_error_t **error );
 
 #endif /* defined( __GNUC__ ) */
 
@@ -253,7 +254,7 @@ on_error:
 
 /* The main program
  */
-#if defined( LIBCSTRING_HAVE_WIDE_SYSTEM_CHARACTER )
+#if defined( HAVE_WIDE_SYSTEM_CHARACTER )
 int wmain(
      int argc FCACHE_TEST_ATTRIBUTE_UNUSED,
      wchar_t * const argv[] FCACHE_TEST_ATTRIBUTE_UNUSED )

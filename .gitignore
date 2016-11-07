@@ -130,5 +130,4 @@ stamp-h[1-9]
 # Local library dependencies specific files
 /libcdata
 /libcerror
-/libcstring
 /libcthreads

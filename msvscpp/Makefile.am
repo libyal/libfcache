@@ -6,7 +6,6 @@ MSVSCPP_FILES = \
 	fcache_test_support/fcache_test_support.vcproj \
 	libcdata/libcdata.vcproj \
 	libcerror/libcerror.vcproj \
-	libcstring/libcstring.vcproj \
 	libcthreads/libcthreads.vcproj \
 	libfcache/libfcache.vcproj \
 	libfcache.sln
