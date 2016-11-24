@@ -24,11 +24,11 @@
 
 #include <libfcache/types.h>
 
-#define LIBFCACHE_VERSION					@VERSION@
+#define LIBFCACHE_VERSION			@VERSION@
 
 /* The version string
  */
-#define LIBFCACHE_VERSION_STRING				"@VERSION@"
+#define LIBFCACHE_VERSION_STRING		"@VERSION@"
 
 /* The cache value flags definitions
  */
@@ -36,11 +36,11 @@ enum LIBFCACHE_CACHE_VALUE_FLAGS
 {
 	/* The cache value is not managed by the library
 	 */
-	LIBFCACHE_CACHE_VALUE_FLAG_NON_MANAGED			= 0x00,
+	LIBFCACHE_CACHE_VALUE_FLAG_NON_MANAGED	= 0x00,
 
 	/* The cache value is managed by the library
 	 */
-	LIBFCACHE_CACHE_VALUE_FLAG_MANAGED			= 0x01
+	LIBFCACHE_CACHE_VALUE_FLAG_MANAGED	= 0x01
 };
 
 #endif /* !defined( _LIBFCACHE_DEFINITIONS_H ) */

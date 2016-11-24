@@ -38,9 +38,9 @@
 #include <libfcache/extern.h>
 
 #else
-#define LIBFCACHE_EXTERN	extern
+#define LIBFCACHE_EXTERN	/* extern */
 
-#endif
+#endif /* !defined( HAVE_LOCAL_LIBFCACHE ) */
 
 #endif /* !defined( _LIBFCACHE_INTERNAL_EXTERN_H ) */
 

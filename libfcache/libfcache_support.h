@@ -43,5 +43,5 @@ const char *libfcache_get_version(
 }
 #endif
 
-#endif
+#endif /* !defined( _LIBFCACHE_SUPPORT_H ) */
 

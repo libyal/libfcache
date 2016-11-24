@@ -1,5 +1,5 @@
 /*
- * Library cache value type testing program
+ * Library cache_value type testing program
  *
  * Copyright (C) 2010-2016, Joachim Metz <joachim.metz@gmail.com>
  *
@@ -27,23 +27,13 @@
 #include <stdlib.h>
 #endif
 
-#include "fcache_test_libfcache.h"
 #include "fcache_test_libcerror.h"
+#include "fcache_test_libfcache.h"
 #include "fcache_test_macros.h"
 #include "fcache_test_memory.h"
 #include "fcache_test_unused.h"
 
-#if defined( __GNUC__ )
-
-int libfcache_cache_value_initialize(
-     libfcache_cache_value_t **cache_value,
-     libcerror_error_t **error );
-
-int libfcache_cache_value_free(
-     libfcache_cache_value_t **cache_value,
-     libcerror_error_t **error );
-
-#endif /* defined( __GNUC__ ) */
+#include "../libfcache/libfcache_cache_value.h"
 
 #if defined( __GNUC__ )
 
@@ -53,11 +43,17 @@ int libfcache_cache_value_free(
 int fcache_test_cache_value_initialize(
      void )
 {
-	libfcache_cache_value_t *cache_value = NULL;
 	libcerror_error_t *error             = NULL;
+	libfcache_cache_value_t *cache_value = NULL;
 	int result                           = 0;
 
-	/* Test libfcache_cache_value_initialize without entries
+#if defined( HAVE_FCACHE_TEST_MEMORY )
+	int number_of_malloc_fail_tests      = 1;
+	int number_of_memset_fail_tests      = 1;
+	int test_number                      = 0;
+#endif
+
+	/* Test regular cases
 	 */
 	result = libfcache_cache_value_initialize(
 	          &cache_value,
@@ -133,65 +129,89 @@ int fcache_test_cache_value_initialize(
 
 #if defined( HAVE_FCACHE_TEST_MEMORY )
 
-	/* Test libfcache_cache_value_initialize with malloc failing
-	 */
-	fcache_test_malloc_attempts_before_fail = 0;
-
-	result = libfcache_cache_value_initialize(
-	          &cache_value,
-	          &error );
-
-	if( fcache_test_malloc_attempts_before_fail != -1 )
+	for( test_number = 0;
+	     test_number < number_of_malloc_fail_tests;
+	     test_number++ )
 	{
-		fcache_test_malloc_attempts_before_fail = -1;
+		/* Test libfcache_cache_value_initialize with malloc failing
+		 */
+		fcache_test_malloc_attempts_before_fail = test_number;
+
+		result = libfcache_cache_value_initialize(
+		          &cache_value,
+		          &error );
+
+		if( fcache_test_malloc_attempts_before_fail != -1 )
+		{
+			fcache_test_malloc_attempts_before_fail = -1;
+
+			if( cache_value != NULL )
+			{
+				libfcache_cache_value_free(
+				 &cache_value,
+				 NULL );
+			}
+		}
+		else
+		{
+			FCACHE_TEST_ASSERT_EQUAL_INT(
+			 "result",
+			 result,
+			 -1 );
+
+			FCACHE_TEST_ASSERT_IS_NULL(
+			 "cache_value",
+			 cache_value );
+
+			FCACHE_TEST_ASSERT_IS_NOT_NULL(
+			 "error",
+			 error );
+
+			libcerror_error_free(
+			 &error );
+		}
 	}
-	else
+	for( test_number = 0;
+	     test_number < number_of_memset_fail_tests;
+	     test_number++ )
 	{
-		FCACHE_TEST_ASSERT_EQUAL_INT(
-		 "result",
-		 result,
-		 -1 );
+		/* Test libfcache_cache_value_initialize with memset failing
+		 */
+		fcache_test_memset_attempts_before_fail = test_number;
 
-		FCACHE_TEST_ASSERT_IS_NULL(
-		 "cache_value",
-		 cache_value );
+		result = libfcache_cache_value_initialize(
+		          &cache_value,
+		          &error );
 
-		FCACHE_TEST_ASSERT_IS_NOT_NULL(
-		 "error",
-		 error );
+		if( fcache_test_memset_attempts_before_fail != -1 )
+		{
+			fcache_test_memset_attempts_before_fail = -1;
 
-		libcerror_error_free(
-		 &error );
-	}
-	/* Test libfcache_cache_value_initialize with memset failing
-	 */
-	fcache_test_memset_attempts_before_fail = 0;
+			if( cache_value != NULL )
+			{
+				libfcache_cache_value_free(
+				 &cache_value,
+				 NULL );
+			}
+		}
+		else
+		{
+			FCACHE_TEST_ASSERT_EQUAL_INT(
+			 "result",
+			 result,
+			 -1 );
 
-	result = libfcache_cache_value_initialize(
-	          &cache_value,
-	          &error );
+			FCACHE_TEST_ASSERT_IS_NULL(
+			 "cache_value",
+			 cache_value );
 
-	if( fcache_test_memset_attempts_before_fail != -1 )
-	{
-		fcache_test_memset_attempts_before_fail = -1;
-	}
-	else
-	{
-		FCACHE_TEST_ASSERT_EQUAL_INT(
-		 "result",
-		 result,
-		 -1 );
+			FCACHE_TEST_ASSERT_IS_NOT_NULL(
+			 "error",
+			 error );
 
-		FCACHE_TEST_ASSERT_IS_NULL(
-		 "cache_value",
-		 cache_value );
-
-		FCACHE_TEST_ASSERT_IS_NOT_NULL(
-		 "error",
-		 error );
-
-		libcerror_error_free(
-		 &error );
+			libcerror_error_free(
+			 &error );
+		}
 	}
 #endif /* defined( HAVE_FCACHE_TEST_MEMORY ) */
 
@@ -250,6 +270,129 @@ on_error:
 	return( 0 );
 }
 
+/* Tests the libfcache_cache_value_get_value function
+ * Returns 1 if successful or 0 if not
+ */
+int fcache_test_cache_value_get_value(
+     void )
+{
+	libcerror_error_t *error             = NULL;
+	libfcache_cache_value_t *cache_value = NULL;
+	intptr_t value                       = 0;
+	int result                           = 0;
+	int value_is_set                     = 0;
+
+	/* Initialize test
+	 */
+	result = libfcache_cache_value_initialize(
+	          &cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "cache_value",
+	 cache_value );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	/* Test regular cases
+	 */
+	result = libfcache_cache_value_get_value(
+	          cache_value,
+	          &value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_NOT_EQUAL_INT(
+	 "result",
+	 result,
+	 -1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	value_is_set = result;
+
+	/* Test error cases
+	 */
+	result = libfcache_cache_value_get_value(
+	          NULL,
+	          &value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 -1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
+
+	libcerror_error_free(
+	 &error );
+
+	if( value_is_set != 0 )
+	{
+		result = libfcache_cache_value_get_value(
+		          cache_value,
+		          NULL,
+		          &error );
+
+		FCACHE_TEST_ASSERT_EQUAL_INT(
+		 "result",
+		 result,
+		 -1 );
+
+		FCACHE_TEST_ASSERT_IS_NOT_NULL(
+		 "error",
+		 error );
+
+		libcerror_error_free(
+		 &error );
+	}
+	/* Clean up
+	 */
+	result = libfcache_cache_value_free(
+	          &cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "cache_value",
+	 cache_value );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	return( 1 );
+
+on_error:
+	if( error != NULL )
+	{
+		libcerror_error_free(
+		 &error );
+	}
+	if( cache_value != NULL )
+	{
+		libfcache_cache_value_free(
+		 &cache_value,
+		 NULL );
+	}
+	return( 0 );
+}
+
 #endif /* defined( __GNUC__ ) */
 
 /* The main program
@@ -276,6 +419,18 @@ int main(
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_free",
 	 fcache_test_cache_value_free );
+
+	/* TODO: add tests for libfcache_cache_value_clear */
+
+	/* TODO: add tests for libfcache_cache_value_get_identifier */
+
+	/* TODO: add tests for libfcache_cache_value_set_identifier */
+
+	FCACHE_TEST_RUN(
+	 "libfcache_cache_value_get_value",
+	 fcache_test_cache_value_get_value );
+
+	/* TODO: add tests for libfcache_cache_value_set_value */
 
 #endif /* defined( __GNUC__ ) */
 

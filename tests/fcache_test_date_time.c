@@ -41,6 +41,8 @@
 #include "fcache_test_macros.h"
 #include "fcache_test_unused.h"
 
+#if !defined( LIBFCACHE_DLL_IMPORT )
+
 /* Tests the libfcache_date_time_get_timestamp function
  * Returns 1 if successful or 0 if not
  */
@@ -93,6 +95,8 @@ on_error:
 	return( 0 );
 }
 
+#endif /* !defined( LIBFCACHE_DLL_IMPORT ) */
+
 /* The main program
  */
 #if defined( HAVE_WIDE_SYSTEM_CHARACTER )
@@ -108,9 +112,13 @@ int main(
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argc )
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argv )
 
+#if !defined( LIBFCACHE_DLL_IMPORT )
+
 	FCACHE_TEST_RUN(
 	 "libfcache_date_time_get_timestamp",
 	 fcache_test_date_time_get_timestamp );
+
+#endif /* !defined( LIBFCACHE_DLL_IMPORT ) */
 
 	return( EXIT_SUCCESS );
 
