@@ -1,7 +1,7 @@
 /*
- * Library cache_value type testing program
+ * Library cache_value type test program
  *
- * Copyright (C) 2010-2016, Joachim Metz <joachim.metz@gmail.com>
+ * Copyright (C) 2010-2017, Joachim Metz <joachim.metz@gmail.com>
  *
  * Refer to AUTHORS for acknowledgements.
  *
@@ -278,7 +278,7 @@ int fcache_test_cache_value_get_value(
 {
 	libcerror_error_t *error             = NULL;
 	libfcache_cache_value_t *cache_value = NULL;
-	intptr_t value                       = 0;
+	intptr_t *value                      = 0;
 	int result                           = 0;
 	int value_is_set                     = 0;
 

@@ -1,7 +1,7 @@
 /*
- * Library cache type testing program
+ * Library cache type test program
  *
- * Copyright (C) 2010-2016, Joachim Metz <joachim.metz@gmail.com>
+ * Copyright (C) 2010-2017, Joachim Metz <joachim.metz@gmail.com>
  *
  * Refer to AUTHORS for acknowledgements.
  *
@@ -27,8 +27,8 @@
 #include <stdlib.h>
 #endif
 
-#include "fcache_test_libfcache.h"
 #include "fcache_test_libcerror.h"
+#include "fcache_test_libfcache.h"
 #include "fcache_test_macros.h"
 #include "fcache_test_memory.h"
 #include "fcache_test_unused.h"
