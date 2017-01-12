@@ -69,6 +69,7 @@ int libfcache_cache_value_initialize(
      libfcache_cache_value_t **cache_value,
      libcerror_error_t **error );
 
+LIBFCACHE_EXTERN \
 int libfcache_cache_value_free(
      libfcache_cache_value_t **cache_value,
      libcerror_error_t **error );

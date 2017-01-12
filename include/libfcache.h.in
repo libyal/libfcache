@@ -256,6 +256,7 @@ int libfcache_cache_value_set_value(
 /* Retrieves the cache value timestamp
  * Returns 1 if successful or -1 on error
  */
+LIBFCACHE_EXTERN \
 int libfcache_date_time_get_timestamp(
      time_t *timestamp,
      libfcache_error_t **error );
