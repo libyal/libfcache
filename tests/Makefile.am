@@ -8,12 +8,10 @@ AM_CPPFLAGS = \
 	@LIBFCACHE_DLL_IMPORT@
 
 TESTS = \
-	test_api_functions.sh \
-	test_api_types.sh
+	test_library.sh
 
 check_SCRIPTS = \
-	test_api_functions.sh \
-	test_api_types.sh \
+	test_library.sh \
 	test_runner.sh
 
 EXTRA_DIST = \
@@ -28,6 +26,7 @@ check_PROGRAMS = \
 
 fcache_test_cache_SOURCES = \
 	fcache_test_cache.c \
+	fcache_test_libcerror.h \
 	fcache_test_libfcache.h \
 	fcache_test_macros.h \
 	fcache_test_memory.c fcache_test_memory.h \
@@ -51,6 +50,7 @@ fcache_test_cache_value_LDADD = \
 
 fcache_test_date_time_SOURCES = \
 	fcache_test_date_time.c \
+	fcache_test_libcerror.h \
 	fcache_test_libfcache.h \
 	fcache_test_macros.h \
 	fcache_test_unused.h

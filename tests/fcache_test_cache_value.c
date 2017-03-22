@@ -232,6 +232,8 @@ on_error:
 	return( 0 );
 }
 
+#endif /* defined( __GNUC__ ) */
+
 /* Tests the libfcache_cache_value_free function
  * Returns 1 if successful or 0 if not
  */
@@ -270,6 +272,106 @@ on_error:
 	return( 0 );
 }
 
+#if defined( __GNUC__ )
+
+/* Tests the libfcache_cache_value_clear function
+ * Returns 1 if successful or 0 if not
+ */
+int fcache_test_cache_value_clear(
+     void )
+{
+	libcerror_error_t *error             = NULL;
+	libfcache_cache_value_t *cache_value = NULL;
+	int result                           = 0;
+
+	/* Initialize test
+	 */
+	result = libfcache_cache_value_initialize(
+	          &cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+        FCACHE_TEST_ASSERT_IS_NOT_NULL(
+         "cache_value",
+         cache_value );
+
+        FCACHE_TEST_ASSERT_IS_NULL(
+         "error",
+         error );
+
+	/* Test regular cases
+	 */
+	result = libfcache_cache_value_clear(
+	          cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+        FCACHE_TEST_ASSERT_IS_NULL(
+         "error",
+         error );
+
+	/* Test error cases
+	 */
+	result = libfcache_cache_value_clear(
+	          NULL,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 -1 );
+
+        FCACHE_TEST_ASSERT_IS_NOT_NULL(
+         "error",
+         error );
+
+	libcerror_error_free(
+	 &error );
+
+	/* Clean up
+	 */
+	result = libfcache_cache_value_free(
+	          &cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+        FCACHE_TEST_ASSERT_IS_NULL(
+         "cache_value",
+         cache_value );
+
+        FCACHE_TEST_ASSERT_IS_NULL(
+         "error",
+         error );
+
+	return( 1 );
+
+on_error:
+	if( error != NULL )
+	{
+		libcerror_error_free(
+		 &error );
+	}
+	if( cache_value != NULL )
+	{
+		libfcache_cache_value_free(
+		 &cache_value,
+		 NULL );
+	}
+	return( 0 );
+}
+
 /* Tests the libfcache_cache_value_get_value function
  * Returns 1 if successful or 0 if not
  */
@@ -278,7 +380,7 @@ int fcache_test_cache_value_get_value(
 {
 	libcerror_error_t *error             = NULL;
 	libfcache_cache_value_t *cache_value = NULL;
-	intptr_t *value                      = 0;
+	intptr_t value                       = 0;
 	int result                           = 0;
 	int value_is_set                     = 0;
 
@@ -416,11 +518,17 @@ int main(
 	 "libfcache_cache_value_initialize",
 	 fcache_test_cache_value_initialize );
 
+#endif /* defined( __GNUC__ ) */
+
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_free",
 	 fcache_test_cache_value_free );
 
-	/* TODO: add tests for libfcache_cache_value_clear */
+#if defined( __GNUC__ )
+
+	FCACHE_TEST_RUN(
+	 "libfcache_cache_value_clear",
+	 fcache_test_cache_value_clear );
 
 	/* TODO: add tests for libfcache_cache_value_get_identifier */
 
