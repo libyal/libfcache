@@ -18,10 +18,9 @@ DPKG_FILES = \
 	dpkg/compat \
 	dpkg/control \
 	dpkg/copyright \
-	dpkg/copyright.in \
 	dpkg/rules \
-	dpkg/libfcache-dev.docs \
-	dpkg/libfcache.docs \
+	dpkg/libfcache-dev.install \
+	dpkg/libfcache.install \
 	dpkg/source/format
 
 GETTEXT_FILES = \

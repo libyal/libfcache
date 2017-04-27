@@ -2,7 +2,7 @@ AC_PREREQ( 2.59 )
 
 AC_INIT(
  [libfcache],
- [20170322],
+ [20170427],
  [joachim.metz@gmail.com])
 
 AC_CONFIG_SRCDIR(
@@ -145,7 +145,6 @@ AC_CONFIG_FILES([libfcache/libfcache_definitions.h])
 dnl Have configure make distribution specific files
 AC_CONFIG_FILES([common/types.h])
 AC_CONFIG_FILES([dpkg/changelog])
-AC_CONFIG_FILES([dpkg/copyright])
 AC_CONFIG_FILES([libfcache/libfcache.rc])
 AC_CONFIG_FILES([libfcache.pc])
 AC_CONFIG_FILES([libfcache.spec])
