@@ -35,7 +35,7 @@
 
 #include "../libfcache/libfcache_cache_value.h"
 
-#if defined( __GNUC__ )
+#if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT )
 
 /* Tests the libfcache_cache_value_initialize function
  * Returns 1 if successful or 0 if not
@@ -232,7 +232,7 @@ on_error:
 	return( 0 );
 }
 
-#endif /* defined( __GNUC__ ) */
+#endif /* #if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT ) */
 
 /* Tests the libfcache_cache_value_free function
  * Returns 1 if successful or 0 if not
@@ -272,7 +272,7 @@ on_error:
 	return( 0 );
 }
 
-#if defined( __GNUC__ )
+#if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT )
 
 /* Tests the libfcache_cache_value_clear function
  * Returns 1 if successful or 0 if not
@@ -495,7 +495,7 @@ on_error:
 	return( 0 );
 }
 
-#endif /* defined( __GNUC__ ) */
+#endif /* #if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT ) */
 
 /* The main program
  */
@@ -512,19 +512,19 @@ int main(
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argc )
 	FCACHE_TEST_UNREFERENCED_PARAMETER( argv )
 
-#if defined( __GNUC__ )
+#if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT )
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_initialize",
 	 fcache_test_cache_value_initialize );
 
-#endif /* defined( __GNUC__ ) */
+#endif /* #if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT ) */
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_free",
 	 fcache_test_cache_value_free );
 
-#if defined( __GNUC__ )
+#if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT )
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_value_clear",
@@ -540,7 +540,7 @@ int main(
 
 	/* TODO: add tests for libfcache_cache_value_set_value */
 
-#endif /* defined( __GNUC__ ) */
+#endif /* #if defined( __GNUC__ ) && !defined( LIBFCACHE_DLL_IMPORT ) */
 
 	return( EXIT_SUCCESS );
 
