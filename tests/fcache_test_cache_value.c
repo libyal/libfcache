@@ -407,7 +407,7 @@ int fcache_test_cache_value_get_value(
 	 */
 	result = libfcache_cache_value_get_value(
 	          cache_value,
-	          &value,
+	          (intptr_t **) &value,
 	          &error );
 
 	FCACHE_TEST_ASSERT_NOT_EQUAL_INT(
@@ -425,7 +425,7 @@ int fcache_test_cache_value_get_value(
 	 */
 	result = libfcache_cache_value_get_value(
 	          NULL,
-	          &value,
+	          (intptr_t **) &value,
 	          &error );
 
 	FCACHE_TEST_ASSERT_EQUAL_INT(
