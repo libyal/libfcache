@@ -62,9 +62,9 @@ int fcache_test_date_time_get_timestamp(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	/* Test error cases
 	 */
@@ -77,9 +77,9 @@ int fcache_test_date_time_get_timestamp(
 	 result,
 	 -1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
 
 	libcerror_error_free(
 	 &error );

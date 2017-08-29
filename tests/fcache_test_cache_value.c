@@ -64,13 +64,13 @@ int fcache_test_cache_value_initialize(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "cache_value",
-         cache_value );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "cache_value",
+	 cache_value );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	result = libfcache_cache_value_free(
 	          &cache_value,
@@ -81,13 +81,13 @@ int fcache_test_cache_value_initialize(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "cache_value",
-         cache_value );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "cache_value",
+	 cache_value );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	/* Test error cases
 	 */
@@ -100,9 +100,9 @@ int fcache_test_cache_value_initialize(
 	 result,
 	 -1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
 
 	libcerror_error_free(
 	 &error );
@@ -118,9 +118,9 @@ int fcache_test_cache_value_initialize(
 	 result,
 	 -1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
 
 	libcerror_error_free(
 	 &error );
@@ -254,9 +254,9 @@ int fcache_test_cache_value_free(
 	 result,
 	 -1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
 
 	libcerror_error_free(
 	 &error );
@@ -295,13 +295,13 @@ int fcache_test_cache_value_clear(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "cache_value",
-         cache_value );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "cache_value",
+	 cache_value );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	/* Test regular cases
 	 */
@@ -314,9 +314,9 @@ int fcache_test_cache_value_clear(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	/* Test error cases
 	 */
@@ -329,9 +329,9 @@ int fcache_test_cache_value_clear(
 	 result,
 	 -1 );
 
-        FCACHE_TEST_ASSERT_IS_NOT_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
 
 	libcerror_error_free(
 	 &error );
@@ -347,13 +347,13 @@ int fcache_test_cache_value_clear(
 	 result,
 	 1 );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "cache_value",
-         cache_value );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "cache_value",
+	 cache_value );
 
-        FCACHE_TEST_ASSERT_IS_NULL(
-         "error",
-         error );
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
 
 	return( 1 );
 
