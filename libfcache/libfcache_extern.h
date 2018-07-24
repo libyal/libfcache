@@ -37,8 +37,11 @@
 
 #include <libfcache/extern.h>
 
+#define LIBFCACHE_EXTERN_VARIABLE	LIBFCACHE_EXTERN
+
 #else
-#define LIBFCACHE_EXTERN	/* extern */
+#define LIBFCACHE_EXTERN		/* extern */
+#define LIBFCACHE_EXTERN_VARIABLE	extern
 
 #endif /* !defined( HAVE_LOCAL_LIBFCACHE ) */
 
