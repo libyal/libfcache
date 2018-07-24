@@ -106,7 +106,7 @@ int libfcache_cache_set_value_by_index(
      off64_t offset,
      time_t timestamp,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libcerror_error_t **error ),
      uint8_t flags,

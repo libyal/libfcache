@@ -54,9 +54,9 @@ struct libfcache_internal_cache_value
 	 */
 	intptr_t *value;
 
-	/* The free value function
+	/* The value free function
 	 */
-	int (*free_value)(
+	int (*value_free_function)(
 	       intptr_t **value,
 	       libcerror_error_t **error );
 
@@ -105,7 +105,7 @@ LIBFCACHE_EXTERN \
 int libfcache_cache_value_set_value(
      libfcache_cache_value_t *cache_value,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libcerror_error_t **error ),
      uint8_t flags,

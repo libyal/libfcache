@@ -186,7 +186,7 @@ int libfcache_cache_set_value_by_index(
      off64_t offset,
      time_t timestamp,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libfcache_error_t **error ),
      uint8_t flags,
@@ -243,7 +243,7 @@ LIBFCACHE_EXTERN \
 int libfcache_cache_value_set_value(
      libfcache_cache_value_t *cache_value,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libfcache_error_t **error ),
      uint8_t flags,

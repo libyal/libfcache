@@ -137,18 +137,18 @@ int libfcache_cache_value_free(
 		{
 			if( ( internal_cache_value->flags & LIBFCACHE_CACHE_VALUE_FLAG_MANAGED ) != 0 )
 			{
-				if( internal_cache_value->free_value == NULL )
+				if( internal_cache_value->value_free_function == NULL )
 				{
 					libcerror_error_set(
 					 error,
 					 LIBCERROR_ERROR_DOMAIN_RUNTIME,
 					 LIBCERROR_RUNTIME_ERROR_VALUE_MISSING,
-					 "%s: invalid cache value - missing free value function.",
+					 "%s: invalid cache value - missing value free function.",
 					 function );
 
 					result = -1;
 				}
-				else if( internal_cache_value->free_value(
+				else if( internal_cache_value->value_free_function(
 					  &( internal_cache_value->value ),
 					  error ) != 1 )
 				{
@@ -358,7 +358,7 @@ int libfcache_cache_value_get_value(
 int libfcache_cache_value_set_value(
      libfcache_cache_value_t *cache_value,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libcerror_error_t **error ),
      uint8_t flags,
@@ -380,13 +380,13 @@ int libfcache_cache_value_set_value(
 	}
 	internal_cache_value = (libfcache_internal_cache_value_t *) cache_value;
 
-	if( free_value == NULL )
+	if( value_free_function == NULL )
 	{
 		libcerror_error_set(
 		 error,
 		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
 		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
-		 "%s: invalid free value function.",
+		 "%s: invalid value free function.",
 		 function );
 
 		return( -1 );
@@ -395,7 +395,7 @@ int libfcache_cache_value_set_value(
 	{
 		if( internal_cache_value->value != NULL )
 		{
-			if( internal_cache_value->free_value == NULL )
+			if( internal_cache_value->value_free_function == NULL )
 			{
 				libcerror_error_set(
 				 error,
@@ -406,7 +406,7 @@ int libfcache_cache_value_set_value(
 
 				return( -1 );
 			}
-			if( internal_cache_value->free_value(
+			if( internal_cache_value->value_free_function(
 			     &( internal_cache_value->value ),
 			     error ) != 1 )
 			{
@@ -422,9 +422,9 @@ int libfcache_cache_value_set_value(
 		}
 		internal_cache_value->flags &= ~( LIBFCACHE_CACHE_VALUE_FLAG_MANAGED );
 	}
-	internal_cache_value->value      = value;
-	internal_cache_value->free_value = free_value;
-	internal_cache_value->flags     |= flags;
+	internal_cache_value->value               = value;
+	internal_cache_value->value_free_function = value_free_function;
+	internal_cache_value->flags              |= flags;
 
 	return( 1 );
 }

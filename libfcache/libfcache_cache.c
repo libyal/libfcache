@@ -41,7 +41,7 @@ int libfcache_cache_initialize(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_initialize";
+	static char *function                      = "libfcache_cache_initialize";
 
 	if( cache == NULL )
 	{
@@ -139,8 +139,8 @@ int libfcache_cache_free(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_free";
-	int result                                = 1;
+	static char *function                      = "libfcache_cache_free";
+	int result                                 = 1;
 
 	if( cache == NULL )
 	{
@@ -186,7 +186,7 @@ int libfcache_cache_empty(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_empty";
+	static char *function                      = "libfcache_cache_empty";
 
 	if( cache == NULL )
 	{
@@ -229,8 +229,8 @@ int libfcache_cache_clone(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_source_cache = NULL;
-	static char *function                            = "libfcache_cache_clone";
-	int number_of_cache_entries                      = 0;
+	static char *function                             = "libfcache_cache_clone";
+	int number_of_cache_entries                       = 0;
 
 	if( destination_cache == NULL )
 	{
@@ -344,7 +344,7 @@ int libfcache_cache_get_number_of_entries(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_get_number_of_entries";
+	static char *function                      = "libfcache_cache_get_number_of_entries";
 
 	if( cache == NULL )
 	{
@@ -385,7 +385,7 @@ int libfcache_cache_get_number_of_cache_values(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_get_number_of_cache_values";
+	static char *function                      = "libfcache_cache_get_number_of_cache_values";
 
 	if( cache == NULL )
 	{
@@ -426,7 +426,7 @@ int libfcache_cache_get_value_by_index(
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_get_value_by_index";
+	static char *function                      = "libfcache_cache_get_value_by_index";
 
 	if( cache == NULL )
 	{
@@ -470,7 +470,7 @@ int libfcache_cache_set_value_by_index(
      off64_t offset,
      time_t timestamp,
      intptr_t *value,
-     int (*free_value)(
+     int (*value_free_function)(
             intptr_t **value,
             libcerror_error_t **error ),
      uint8_t flags,
@@ -478,7 +478,7 @@ int libfcache_cache_set_value_by_index(
 {
 	libfcache_cache_value_t *cache_value       = NULL;
 	libfcache_internal_cache_t *internal_cache = NULL;
-	static char *function                     = "libfcache_cache_set_value_by_index";
+	static char *function                      = "libfcache_cache_set_value_by_index";
 
 	if( cache == NULL )
 	{
@@ -549,7 +549,7 @@ int libfcache_cache_set_value_by_index(
 	if( libfcache_cache_value_set_value(
 	     cache_value,
 	     value,
-	     free_value,
+	     value_free_function,
 	     flags,
 	     error ) != 1 )
 	{
