@@ -28,13 +28,6 @@
  */
 #if !defined( HAVE_LOCAL_LIBFCACHE )
 
-/* If libtool DLL support is enabled set LIBFCACHE_DLL_EXPORT
- * before including libfcache/extern.h
- */
-#if defined( _WIN32 ) && defined( DLL_EXPORT )
-#define LIBFCACHE_DLL_EXPORT
-#endif
-
 #include <libfcache/extern.h>
 
 #define LIBFCACHE_EXTERN_VARIABLE	LIBFCACHE_EXTERN

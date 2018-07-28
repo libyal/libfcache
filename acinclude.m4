@@ -1,6 +1,6 @@
-dnl Checks for required headers and functions
+dnl Functions for libfcache
 dnl
-dnl Version: 20170903
+dnl Version: 20170904
 
 dnl Function to detect if libfcache dependencies are available
 AC_DEFUN([AX_LIBFCACHE_CHECK_LOCAL],
@@ -18,5 +18,5 @@ AC_DEFUN([AX_LIBFCACHE_CHECK_LOCAL],
       [Missing function: time],
       [1])
     ])
-
   ])
+

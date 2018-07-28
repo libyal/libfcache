@@ -24,13 +24,6 @@
 
 #include <common.h>
 
-/* If Cygwin libtool DLL support is enabled and do not want to create static
- * executables set LIBFCACHE_DLL_IMPORT before including libfcache.h
- */
-#if defined( _WIN32 ) && defined( DLL_EXPORT ) && !defined( HAVE_STATIC_EXECUTABLES )
-#define LIBFCACHE_DLL_IMPORT
-#endif
-
 #include <libfcache.h>
 
 #endif /* !defined( _FCACHE_TEST_LIBFCACHE_H ) */
