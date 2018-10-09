@@ -220,7 +220,7 @@ int libfcache_cache_value_get_identifier(
      libfcache_cache_value_t *cache_value,
      int *file_index,
      off64_t *offset,
-     time_t *timestamp,
+     int64_t *timestamp,
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_value_t *internal_cache_value = NULL;
@@ -286,7 +286,7 @@ int libfcache_cache_value_set_identifier(
      libfcache_cache_value_t *cache_value,
      int file_index,
      off64_t offset,
-     time_t timestamp,
+     int64_t timestamp,
      libcerror_error_t **error )
 {
 	libfcache_internal_cache_value_t *internal_cache_value = NULL;

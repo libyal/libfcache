@@ -19,13 +19,12 @@
  * along with this software.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined( _LIBFCACHE_INTERNAL_CACHE_VALUE_H )
-#define _LIBFCACHE_INTERNAL_CACHE_VALUE_H
+#if !defined( _LIBFCACHE_CACHE_VALUE_H )
+#define _LIBFCACHE_CACHE_VALUE_H
 
 #include <common.h>
 #include <types.h>
 
-#include "libfcache_date_time.h"
 #include "libfcache_extern.h"
 #include "libfcache_libcerror.h"
 #include "libfcache_types.h"
@@ -46,9 +45,9 @@ struct libfcache_internal_cache_value
 	 */
 	off64_t offset;
 
-	/* The time stamp
+	/* The timestamp
 	 */
-	time_t timestamp;
+	int64_t timestamp;
 
 	/* The value
 	 */
@@ -84,7 +83,7 @@ int libfcache_cache_value_get_identifier(
      libfcache_cache_value_t *cache_value,
      int *file_index,
      off64_t *offset,
-     time_t *timestamp,
+     int64_t *timestamp,
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \
@@ -92,7 +91,7 @@ int libfcache_cache_value_set_identifier(
      libfcache_cache_value_t *cache_value,
      int file_index,
      off64_t offset,
-     time_t timestamp,
+     int64_t timestamp,
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \
@@ -115,5 +114,5 @@ int libfcache_cache_value_set_value(
 }
 #endif
 
-#endif /* !defined( _LIBFCACHE_INTERNAL_CACHE_VALUE_H ) */
+#endif /* !defined( _LIBFCACHE_CACHE_VALUE_H ) */
 

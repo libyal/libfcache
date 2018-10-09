@@ -1,3 +1,8 @@
+TODO
+* remove libfcache_cache_clone
+* remove libfcache_cache_resize
+* deprecate libfcache_cache_set_value_by_index?
+
 20121211
 * see `git log' for more recent change log
 * created stand-alone version based on libfguid

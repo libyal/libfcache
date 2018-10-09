@@ -1,4 +1,4 @@
-.Dd July 24, 2018
+.Dd October  9, 2018
 .Dt libfcache 3
 .Os libfcache
 .Sh NAME
@@ -41,21 +41,29 @@ Cache functions
 .Ft int
 .Fn libfcache_cache_get_number_of_cache_values "libfcache_cache_t *cache, int *number_of_values, libfcache_error_t **error"
 .Ft int
+.Fn libfcache_cache_get_value_by_identifier "libfcache_cache_t *cache, int file_index, off64_t offset, int64_t timestamp, libfcache_cache_value_t **cache_value, libfcache_error_t **error"
+.Ft int
 .Fn libfcache_cache_get_value_by_index "libfcache_cache_t *cache, int cache_entry_index, libfcache_cache_value_t **cache_value, libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_set_value_by_index "libfcache_cache_t *cache, int cache_entry_index, int file_index, off64_t offset, time_t timestamp, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Fn libfcache_cache_set_value_by_identifier "libfcache_cache_t *cache, int file_index, off64_t offset, int64_t timestamp, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Ft int
+.Fn libfcache_cache_set_value_by_index "libfcache_cache_t *cache, int cache_entry_index, int file_index, off64_t offset, int64_t timestamp, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
 .Pp
 Cache value functions
 .Ft int
 .Fn libfcache_cache_value_free "libfcache_cache_value_t **cache_value, libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_get_identifier "libfcache_cache_value_t *cache_value, int *file_index, off64_t *offset, time_t *timestamp, libfcache_error_t **error"
+.Fn libfcache_cache_value_get_identifier "libfcache_cache_value_t *cache_value, int *file_index, off64_t *offset, int64_t *timestamp, libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_set_identifier "libfcache_cache_value_t *cache_value, int file_index, off64_t offset, time_t timestamp, libfcache_error_t **error"
+.Fn libfcache_cache_value_set_identifier "libfcache_cache_value_t *cache_value, int file_index, off64_t offset, int64_t timestamp, libfcache_error_t **error"
 .Ft int
 .Fn libfcache_cache_value_get_value "libfcache_cache_value_t *cache_value, intptr_t **value, libfcache_error_t **error"
 .Ft int
 .Fn libfcache_cache_value_set_value "libfcache_cache_value_t *cache_value, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Pp
+Date time functions
+.Ft int
+.Fn libfcache_date_time_get_timestamp "int64_t *timestamp, libfcache_error_t **error"
 .Sh DESCRIPTION
 The
 .Fn libfcache_get_version

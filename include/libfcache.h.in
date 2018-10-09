@@ -30,15 +30,6 @@
 
 #include <stdio.h>
 
-#if defined( TIME_WITH_SYS_TIME )
-#include <sys/time.h>
-#include <time.h>
-#elif defined( HAVE_SYS_TIME_H )
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-
 #if defined( __cplusplus )
 extern "C" {
 #endif
@@ -141,6 +132,7 @@ int libfcache_cache_clone(
 /* Resizes the cache
  * Returns 1 if successful or -1 on error
  */
+LIBFCACHE_DEPRECATED \
 LIBFCACHE_EXTERN \
 int libfcache_cache_resize(
      libfcache_cache_t *cache,
@@ -165,6 +157,18 @@ int libfcache_cache_get_number_of_cache_values(
      int *number_of_values,
      libfcache_error_t **error );
 
+/* Retrieves the cache value that matches the identifier
+ * Returns 1 if successful, 0 if no such value or -1 on error
+ */
+LIBFCACHE_EXTERN \
+int libfcache_cache_get_value_by_identifier(
+     libfcache_cache_t *cache,
+     int file_index,
+     off64_t offset,
+     int64_t timestamp,
+     libfcache_cache_value_t **cache_value,
+     libfcache_error_t **error );
+
 /* Retrieves the cache value for the specific index
  * Returns 1 if successful or -1 on error
  */
@@ -175,16 +179,33 @@ int libfcache_cache_get_value_by_index(
      libfcache_cache_value_t **cache_value,
      libfcache_error_t **error );
 
+/* Sets the cache value for the identifer
+ * Returns 1 if successful or -1 on error
+ */
+LIBFCACHE_EXTERN \
+int libfcache_cache_set_value_by_identifier(
+     libfcache_cache_t *cache,
+     int file_index,
+     off64_t offset,
+     int64_t timestamp,
+     intptr_t *value,
+     int (*value_free_function)(
+            intptr_t **value,
+            libfcache_error_t **error ),
+     uint8_t flags,
+     libfcache_error_t **error );
+
 /* Sets the cache value for the specific index
  * Returns 1 if successful or -1 on error
  */
+LIBFCACHE_DEPRECATED \
 LIBFCACHE_EXTERN \
 int libfcache_cache_set_value_by_index(
      libfcache_cache_t *cache,
      int cache_entry_index,
      int file_index,
      off64_t offset,
-     time_t timestamp,
+     int64_t timestamp,
      intptr_t *value,
      int (*value_free_function)(
             intptr_t **value,
@@ -213,7 +234,7 @@ int libfcache_cache_value_get_identifier(
      libfcache_cache_value_t *cache_value,
      int *file_index,
      off64_t *offset,
-     time_t *timestamp,
+     int64_t *timestamp,
      libfcache_error_t **error );
 
 /* Sets the cache value identifier
@@ -224,7 +245,7 @@ int libfcache_cache_value_set_identifier(
      libfcache_cache_value_t *cache_value,
      int file_index,
      off64_t offset,
-     time_t timestamp,
+     int64_t timestamp,
      libfcache_error_t **error );
 
 /* Retrieves the cache value
@@ -258,7 +279,7 @@ int libfcache_cache_value_set_value(
  */
 LIBFCACHE_EXTERN \
 int libfcache_date_time_get_timestamp(
-     time_t *timestamp,
+     int64_t *timestamp,
      libfcache_error_t **error );
 
 #if defined( __cplusplus )

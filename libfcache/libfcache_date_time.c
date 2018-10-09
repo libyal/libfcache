@@ -38,9 +38,13 @@
  * Returns 1 if successful or -1 on error
  */
 int libfcache_date_time_get_timestamp(
-     time_t *timestamp,
+     int64_t *timestamp,
      libcerror_error_t **error )
 {
+#if defined( HAVE_CLOCK_GETTIME )
+	struct timespec time_structure;
+#endif
+
 	static char *function = "libfcache_date_time_get_timestamp";
 
 	if( timestamp == NULL )
@@ -54,7 +58,37 @@ int libfcache_date_time_get_timestamp(
 
 		return( -1 );
 	}
-	*timestamp = time( NULL );
+#if defined( HAVE_CLOCK_GETTIME )
+	if( clock_gettime(
+	     CLOCK_REALTIME,
+	     &time_structure ) != 0 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+		 "%s: unable to retrieve current time structure.",
+		 function );
+
+		return( -1 );
+	}
+	*timestamp = ( (int64_t) time_structure.tv_sec * 1000000000 ) + time_structure.tv_nsec;
+
+#else
+	*timestamp = (int64_t) time( NULL );
+
+	if( *timestamp == (time_t) -1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+		 "%s: unable to retrieve current time.",
+		 function );
+
+		return( -1 );
+	}
+#endif /* defined( HAVE_CLOCK_GETTIME ) */
 
 	return( 1 );
 }

@@ -416,6 +416,136 @@ int libfcache_cache_get_number_of_cache_values(
 	return( 1 );
 }
 
+/* Retrieves the cache value that matches the file index, offset and timestamp
+ * Returns 1 if successful, 0 if no such value or -1 on error
+ */
+int libfcache_cache_get_value_by_identifier(
+     libfcache_cache_t *cache,
+     int file_index,
+     off64_t offset,
+     int64_t timestamp,
+     libfcache_cache_value_t **cache_value,
+     libcerror_error_t **error )
+{
+	libfcache_cache_value_t *previous_cache_value = NULL;
+	libfcache_cache_value_t *safe_cache_value     = NULL;
+	libfcache_internal_cache_t *internal_cache    = NULL;
+	static char *function                         = "libfcache_cache_get_value_by_identifier";
+	off64_t cache_value_offset                    = 0;
+	int64_t cache_value_timestamp                 = 0;
+	int cache_entry_index                         = 0;
+	int cache_value_file_index                    = 0;
+
+	if( cache == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache = (libfcache_internal_cache_t *) cache;
+
+	if( cache_value == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache value.",
+		 function );
+
+		return( -1 );
+	}
+	for( cache_entry_index = 0;
+	     cache_entry_index < internal_cache->number_of_cache_values;
+	     cache_entry_index++ )
+	{
+		if( libcdata_array_get_entry_by_index(
+		     internal_cache->entries,
+		     cache_entry_index,
+		     (intptr_t **) &safe_cache_value,
+		     error ) != 1 )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+			 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+			 "%s: unable to retrieve cache value: %d from entries array.",
+			 function,
+			 cache_entry_index );
+
+			return( -1 );
+		}
+		if( libfcache_cache_value_get_identifier(
+		     safe_cache_value,
+		     &cache_value_file_index,
+		     &cache_value_offset,
+		     &cache_value_timestamp,
+		     error ) != 1 )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+			 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+			 "%s: unable to retrieve cache value: %d from entries array.",
+			 function,
+			 cache_entry_index );
+
+			return( -1 );
+		}
+		if( ( cache_value_file_index == file_index )
+		 && ( cache_value_offset == offset )
+		 && ( cache_value_timestamp == timestamp ) )
+		{
+			if( cache_entry_index > 0 )
+			{
+/* TODO track usage */
+				if( libcdata_array_set_entry_by_index(
+				     internal_cache->entries,
+				     cache_entry_index - 1,
+				     (intptr_t *) safe_cache_value,
+				     error ) != 1 )
+				{
+					libcerror_error_set(
+					 error,
+					 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+					 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+					 "%s: unable to set cache value: %d in entries array.",
+					 function,
+					 cache_entry_index - 1 );
+
+					return( -1 );
+				}
+				if( libcdata_array_set_entry_by_index(
+				     internal_cache->entries,
+				     cache_entry_index,
+				     (intptr_t *) previous_cache_value,
+				     error ) != 1 )
+				{
+					libcerror_error_set(
+					 error,
+					 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+					 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+					 "%s: unable to set cache value: %d in entries array.",
+					 function,
+					 cache_entry_index - 1 );
+
+					return( -1 );
+				}
+			}
+			*cache_value = safe_cache_value;
+
+			return( 1 );
+		}
+		previous_cache_value = safe_cache_value;
+	}
+	return( 0 );
+}
+
 /* Retrieves the cache value for the specific index
  * Returns 1 if successful or -1 on error
  */
@@ -460,6 +590,144 @@ int libfcache_cache_get_value_by_index(
 	return( 1 );
 }
 
+/* Sets the cache value for the file index, offset and timestamp
+ * Returns 1 if successful or -1 on error
+ */
+int libfcache_cache_set_value_by_identifier(
+     libfcache_cache_t *cache,
+     int file_index,
+     off64_t offset,
+     int64_t timestamp,
+     intptr_t *value,
+     int (*value_free_function)(
+            intptr_t **value,
+            libcerror_error_t **error ),
+     uint8_t flags,
+     libcerror_error_t **error )
+{
+	libfcache_cache_value_t *cache_value       = NULL;
+	libfcache_internal_cache_t *internal_cache = NULL;
+	static char *function                      = "libfcache_cache_set_value_by_identifier";
+	int number_of_cache_entries                = 0;
+
+	if( cache == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache = (libfcache_internal_cache_t *) cache;
+
+	if( libcdata_array_get_number_of_entries(
+	     internal_cache->entries,
+	     &number_of_cache_entries,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+		 "%s: unable to retrieve number of cache entries from entries array.",
+		 function );
+
+		return( -1 );
+	}
+	if( internal_cache->number_of_cache_values < number_of_cache_entries )
+	{
+		if( libfcache_cache_value_initialize(
+		     &cache_value,
+		     error ) != 1 )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+			 LIBCERROR_RUNTIME_ERROR_INITIALIZE_FAILED,
+			 "%s: unable to create cache value.",
+			 function );
+
+			return( -1 );
+		}
+		if( libcdata_array_set_entry_by_index(
+		     internal_cache->entries,
+		     internal_cache->number_of_cache_values,
+		     (intptr_t *) cache_value,
+		     error ) != 1 )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+			 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+			 "%s: unable to set cache value: %d in entries array.",
+			 function,
+			 internal_cache->number_of_cache_values );
+
+			libfcache_cache_value_free(
+			 &cache_value,
+			 NULL );
+
+			return( -1 );
+		}
+		internal_cache->number_of_cache_values++;
+	}
+	else
+	{
+		if( libcdata_array_get_entry_by_index(
+		     internal_cache->entries,
+		     number_of_cache_entries - 1,
+		     (intptr_t **) &cache_value,
+		     error ) != 1 )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+			 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+			 "%s: unable to retrieve cache value: %d from entries array.",
+			 function,
+			 number_of_cache_entries - 1 );
+
+			return( -1 );
+		}
+	}
+	if( libfcache_cache_value_set_value(
+	     cache_value,
+	     value,
+	     value_free_function,
+	     flags,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+		 "%s: unable to set value in cache value.",
+		 function );
+
+		return( -1 );
+	}
+	if( libfcache_cache_value_set_identifier(
+	     cache_value,
+	     file_index,
+	     offset,
+	     timestamp,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+		 "%s: unable to set identifier in cache value.",
+		 function );
+
+		return( -1 );
+	}
+	return( 1 );
+}
+
 /* Sets the cache value for the specific index
  * Returns 1 if successful or -1 on error
  */
@@ -468,7 +736,7 @@ int libfcache_cache_set_value_by_index(
      int cache_entry_index,
      int file_index,
      off64_t offset,
-     time_t timestamp,
+     int64_t timestamp,
      intptr_t *value,
      int (*value_free_function)(
             intptr_t **value,
