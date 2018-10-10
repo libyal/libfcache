@@ -564,8 +564,8 @@ int fcache_test_cache_value_get_identifier(
 {
 	libcerror_error_t *error             = NULL;
 	libfcache_cache_value_t *cache_value = NULL;
-	time_t timestamp                     = 0;
 	off64_t offset                       = 0;
+	int64_t timestamp                    = 0;
 	int file_index                       = 0;
 	int result                           = 0;
 

@@ -37,6 +37,10 @@ typedef struct libfcache_internal_cache_value libfcache_internal_cache_value_t;
 
 struct libfcache_internal_cache_value
 {
+	/* The cache index
+	 */
+	int cache_index;
+
 	/* The file index
 	 */
 	int file_index;
@@ -86,12 +90,22 @@ int libfcache_cache_value_get_identifier(
      int64_t *timestamp,
      libcerror_error_t **error );
 
+int libfcache_cache_value_get_cache_index(
+     libfcache_cache_value_t *cache_value,
+     int *cache_index,
+     libcerror_error_t **error );
+
 LIBFCACHE_EXTERN \
 int libfcache_cache_value_set_identifier(
      libfcache_cache_value_t *cache_value,
      int file_index,
      off64_t offset,
      int64_t timestamp,
+     libcerror_error_t **error );
+
+int libfcache_cache_value_set_cache_index(
+     libfcache_cache_value_t *cache_value,
+     int cache_index,
      libcerror_error_t **error );
 
 LIBFCACHE_EXTERN \

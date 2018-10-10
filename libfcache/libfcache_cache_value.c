@@ -24,7 +24,6 @@
 #include <types.h>
 
 #include "libfcache_cache_value.h"
-#include "libfcache_date_time.h"
 #include "libfcache_definitions.h"
 #include "libfcache_libcerror.h"
 #include "libfcache_types.h"
@@ -279,6 +278,46 @@ int libfcache_cache_value_get_identifier(
 	return( 1 );
 }
 
+/* Retrieves the cache value cache index
+ * Returns 1 if successful or -1 on error
+ */
+int libfcache_cache_value_get_cache_index(
+     libfcache_cache_value_t *cache_value,
+     int *cache_index,
+     libcerror_error_t **error )
+{
+	libfcache_internal_cache_value_t *internal_cache_value = NULL;
+	static char *function                                  = "libfcache_cache_value_get_cache_index";
+
+	if( cache_value == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache value.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache_value = (libfcache_internal_cache_value_t *) cache_value;
+
+	if( cache_index == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache index.",
+		 function );
+
+		return( -1 );
+	}
+	*cache_index = internal_cache_value->cache_index;
+
+	return( 1 );
+}
+
 /* Sets the cache value identifier
  * Returns 1 if successful or -1 on error
  */
@@ -308,6 +347,35 @@ int libfcache_cache_value_set_identifier(
 	internal_cache_value->file_index = file_index;
 	internal_cache_value->offset     = offset;
 	internal_cache_value->timestamp  = timestamp;
+
+	return( 1 );
+}
+
+/* Sets the cache value cache index
+ * Returns 1 if successful or -1 on error
+ */
+int libfcache_cache_value_set_cache_index(
+     libfcache_cache_value_t *cache_value,
+     int cache_index,
+     libcerror_error_t **error )
+{
+	libfcache_internal_cache_value_t *internal_cache_value = NULL;
+	static char *function                                  = "libfcache_cache_value_set_cache_index";
+
+	if( cache_value == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache value.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache_value = (libfcache_internal_cache_value_t *) cache_value;
+
+	internal_cache_value->cache_index = cache_index;
 
 	return( 1 );
 }

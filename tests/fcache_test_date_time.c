@@ -27,15 +27,6 @@
 #include <stdlib.h>
 #endif
 
-#if defined( TIME_WITH_SYS_TIME )
-#include <sys/time.h>
-#include <time.h>
-#elif defined( HAVE_SYS_TIME_H )
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-
 #include "fcache_test_libcerror.h"
 #include "fcache_test_libfcache.h"
 #include "fcache_test_macros.h"
@@ -50,7 +41,7 @@ int fcache_test_date_time_get_timestamp(
      void )
 {
 	libcerror_error_t *error = NULL;
-	time_t timestamp         = 0;
+	int64_t timestamp        = 0;
 	int result               = 0;
 
 	result = libfcache_date_time_get_timestamp(

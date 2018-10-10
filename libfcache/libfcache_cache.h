@@ -39,9 +39,13 @@ typedef struct libfcache_internal_cache libfcache_internal_cache_t;
 
 struct libfcache_internal_cache
 {
-	/* The cache entries (array)
+	/* The cache entries array
 	 */
-	libcdata_array_t *entries;
+	libcdata_array_t *entries_array;
+
+	/* The cache entries list
+	 */
+	libcdata_list_t *entries_list;
 
 	/* The number of cache values
 	 */
