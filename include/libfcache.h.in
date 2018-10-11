@@ -198,7 +198,6 @@ int libfcache_cache_set_value_by_identifier(
 /* Sets the cache value for the specific index
  * Returns 1 if successful or -1 on error
  */
-LIBFCACHE_DEPRECATED \
 LIBFCACHE_EXTERN \
 int libfcache_cache_set_value_by_index(
      libfcache_cache_t *cache,
