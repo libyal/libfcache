@@ -1,6 +1,6 @@
 dnl Checks for required headers and functions
 dnl
-dnl Version: 20181009
+dnl Version: 20181010
 
 dnl Function to detect if libfcache dependencies are available
 AC_DEFUN([AX_LIBFCACHE_CHECK_LOCAL],

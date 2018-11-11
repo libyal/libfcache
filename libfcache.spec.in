@@ -10,15 +10,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 @libfcache_spec_requires@ @ax_libcdata_spec_requires@ @ax_libcerror_spec_requires@ @ax_libcthreads_spec_requires@
 BuildRequires: gcc @ax_libcdata_spec_build_requires@ @ax_libcerror_spec_build_requires@ @ax_libcthreads_spec_build_requires@
 
-%description
+%description -n libfcache
 Library to provide generic file data cache functions
 
-%package devel
+%package -n libfcache-devel
 Summary: Header files and libraries for developing applications for libfcache
 Group: Development/Libraries
 Requires: libfcache = %{version}-%{release}
 
-%description devel
+%description -n libfcache-devel
 Header files and libraries for developing applications for libfcache.
 
 %prep
@@ -39,13 +39,13 @@ rm -rf %{buildroot}
 
 %postun -p /sbin/ldconfig
 
-%files
+%files -n libfcache
 %defattr(644,root,root,755)
 %license COPYING
 %doc AUTHORS README
 %attr(755,root,root) %{_libdir}/*.so.*
 
-%files devel
+%files -n libfcache-devel
 %defattr(644,root,root,755)
 %license COPYING
 %doc AUTHORS README ChangeLog
