@@ -9,6 +9,8 @@ Homepage: https://github.com/libyal/libfcache
 Package: libfcache
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libfcache1
+Replaces: libfcache1
 Suggests: libfcache-dbg
 Description: Library to provide generic file data cache functions
  libfcache is a library to provide generic file data cache functions.
