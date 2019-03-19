@@ -1,11 +1,9 @@
-.Dd October  9, 2018
+.Dd March 19, 2019
 .Dt libfcache 3
 .Os libfcache
 .Sh NAME
 .Nm libfcache.h
 .Nd Library to provide generic file data cache functions
-.Sh LIBRARY
-.Lb libfcache
 .Sh SYNOPSIS
 .In libfcache.h
 .Pp
@@ -17,53 +15,53 @@ Error functions
 .Ft void
 .Fn libfcache_error_free "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_error_fprint "libfcache_error_t *error, FILE *stream"
+.Fn libfcache_error_fprint "libfcache_error_t *error" "FILE *stream"
 .Ft int
-.Fn libfcache_error_sprint "libfcache_error_t *error, char *string, size_t size"
+.Fn libfcache_error_sprint "libfcache_error_t *error" "char *string" "size_t size"
 .Ft int
-.Fn libfcache_error_backtrace_fprint "libfcache_error_t *error, FILE *stream"
+.Fn libfcache_error_backtrace_fprint "libfcache_error_t *error" "FILE *stream"
 .Ft int
-.Fn libfcache_error_backtrace_sprint "libfcache_error_t *error, char *string, size_t size"
+.Fn libfcache_error_backtrace_sprint "libfcache_error_t *error" "char *string" "size_t size"
 .Pp
 Cache functions
 .Ft int
-.Fn libfcache_cache_initialize "libfcache_cache_t **cache, int maximum_cache_entries, libfcache_error_t **error"
+.Fn libfcache_cache_initialize "libfcache_cache_t **cache" "int maximum_cache_entries" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_free "libfcache_cache_t **cache, libfcache_error_t **error"
+.Fn libfcache_cache_free "libfcache_cache_t **cache" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_empty "libfcache_cache_t *cache, libfcache_error_t **error"
+.Fn libfcache_cache_empty "libfcache_cache_t *cache" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_clone "libfcache_cache_t **destination_cache, libfcache_cache_t *source_cache, libfcache_error_t **error"
+.Fn libfcache_cache_clone "libfcache_cache_t **destination_cache" "libfcache_cache_t *source_cache" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_resize "libfcache_cache_t *cache, int maximum_cache_entries, libfcache_error_t **error"
+.Fn libfcache_cache_resize "libfcache_cache_t *cache" "int maximum_cache_entries" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_get_number_of_entries "libfcache_cache_t *cache, int *number_of_entries, libfcache_error_t **error"
+.Fn libfcache_cache_get_number_of_entries "libfcache_cache_t *cache" "int *number_of_entries" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_get_number_of_cache_values "libfcache_cache_t *cache, int *number_of_values, libfcache_error_t **error"
+.Fn libfcache_cache_get_number_of_cache_values "libfcache_cache_t *cache" "int *number_of_values" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_get_value_by_identifier "libfcache_cache_t *cache, int file_index, off64_t offset, int64_t timestamp, libfcache_cache_value_t **cache_value, libfcache_error_t **error"
+.Fn libfcache_cache_get_value_by_identifier "libfcache_cache_t *cache" "int file_index" "off64_t offset" "int64_t timestamp" "libfcache_cache_value_t **cache_value" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_get_value_by_index "libfcache_cache_t *cache, int cache_entry_index, libfcache_cache_value_t **cache_value, libfcache_error_t **error"
+.Fn libfcache_cache_get_value_by_index "libfcache_cache_t *cache" "int cache_entry_index" "libfcache_cache_value_t **cache_value" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_set_value_by_identifier "libfcache_cache_t *cache, int file_index, off64_t offset, int64_t timestamp, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Fn libfcache_cache_set_value_by_identifier "libfcache_cache_t *cache" "int file_index" "off64_t offset" "int64_t timestamp" "intptr_t *value" "int (*value_free_function)( intptr_t **value, libfcache_error_t **error )" "uint8_t flags" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_set_value_by_index "libfcache_cache_t *cache, int cache_entry_index, int file_index, off64_t offset, int64_t timestamp, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Fn libfcache_cache_set_value_by_index "libfcache_cache_t *cache" "int cache_entry_index" "int file_index" "off64_t offset" "int64_t timestamp" "intptr_t *value" "int (*value_free_function)( intptr_t **value, libfcache_error_t **error )" "uint8_t flags" "libfcache_error_t **error"
 .Pp
 Cache value functions
 .Ft int
-.Fn libfcache_cache_value_free "libfcache_cache_value_t **cache_value, libfcache_error_t **error"
+.Fn libfcache_cache_value_free "libfcache_cache_value_t **cache_value" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_get_identifier "libfcache_cache_value_t *cache_value, int *file_index, off64_t *offset, int64_t *timestamp, libfcache_error_t **error"
+.Fn libfcache_cache_value_get_identifier "libfcache_cache_value_t *cache_value" "int *file_index" "off64_t *offset" "int64_t *timestamp" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_set_identifier "libfcache_cache_value_t *cache_value, int file_index, off64_t offset, int64_t timestamp, libfcache_error_t **error"
+.Fn libfcache_cache_value_set_identifier "libfcache_cache_value_t *cache_value" "int file_index" "off64_t offset" "int64_t timestamp" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_get_value "libfcache_cache_value_t *cache_value, intptr_t **value, libfcache_error_t **error"
+.Fn libfcache_cache_value_get_value "libfcache_cache_value_t *cache_value" "intptr_t **value" "libfcache_error_t **error"
 .Ft int
-.Fn libfcache_cache_value_set_value "libfcache_cache_value_t *cache_value, intptr_t *value, int (*value_free_function)( intptr_t **value, libfcache_error_t **error ), uint8_t flags, libfcache_error_t **error"
+.Fn libfcache_cache_value_set_value "libfcache_cache_value_t *cache_value" "intptr_t *value" "int (*value_free_function)( intptr_t **value, libfcache_error_t **error )" "uint8_t flags" "libfcache_error_t **error"
 .Pp
 Date time functions
 .Ft int
-.Fn libfcache_date_time_get_timestamp "int64_t *timestamp, libfcache_error_t **error"
+.Fn libfcache_date_time_get_timestamp "int64_t *timestamp" "libfcache_error_t **error"
 .Sh DESCRIPTION
 The
 .Fn libfcache_get_version
@@ -81,7 +79,7 @@ Please report bugs of any kind on the project issue tracker: https://github.com/
 These man pages are generated from "libfcache.h".
 .Sh COPYRIGHT
 Copyright (C) 2010-2019, Joachim Metz <joachim.metz@gmail.com>.
-
+.sp
 This is free software; see the source for copying conditions.
 There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 .Sh SEE ALSO

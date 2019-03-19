@@ -13,6 +13,14 @@ BuildRequires: gcc @ax_libcdata_spec_build_requires@ @ax_libcerror_spec_build_re
 %description -n libfcache
 Library to provide generic file data cache functions
 
+%package -n libfcache-static
+Summary: Library to provide generic file data cache functions
+Group: Development/Libraries
+Requires: libfcache = %{version}-%{release}
+
+%description -n libfcache-static
+Static library version of libfcache.
+
 %package -n libfcache-devel
 Summary: Header files and libraries for developing applications for libfcache
 Group: Development/Libraries
@@ -45,11 +53,16 @@ rm -rf %{buildroot}
 %doc AUTHORS README
 %attr(755,root,root) %{_libdir}/*.so.*
 
+%files -n libfcache-static
+%defattr(644,root,root,755)
+%license COPYING
+%doc AUTHORS README
+%attr(755,root,root) %{_libdir}/*.a
+
 %files -n libfcache-devel
 %defattr(644,root,root,755)
 %license COPYING
 %doc AUTHORS README
-%{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/libfcache.pc
