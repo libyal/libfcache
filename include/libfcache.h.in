@@ -157,6 +157,12 @@ int libfcache_cache_get_number_of_cache_values(
      int *number_of_values,
      libfcache_error_t **error );
 
+LIBFCACHE_EXTERN \
+int libfcache_cache_clear_value_by_index(
+     libfcache_cache_t *cache,
+     int cache_entry_index,
+     libfcache_error_t **error );
+
 /* Retrieves the cache value that matches the identifier
  * Returns 1 if successful, 0 if no such value or -1 on error
  */
@@ -216,13 +222,21 @@ int libfcache_cache_set_value_by_index(
  * Cache value functions
  * ------------------------------------------------------------------------- */
 
-/* Clears the cache value
- * This function does not free the value
+/* Frees a cache value
  * Returns 1 if successful or -1 on error
  */
 LIBFCACHE_EXTERN \
 int libfcache_cache_value_free(
      libfcache_cache_value_t **cache_value,
+     libfcache_error_t **error );
+
+/* Clears the cache value
+ * This function does not free the value
+ * Returns 1 if successful or -1 on error
+ */
+LIBFCACHE_EXTERN \
+int libfcache_cache_value_clear(
+     libfcache_cache_value_t *cache_value,
      libfcache_error_t **error );
 
 /* Retrieves the cache value identifier

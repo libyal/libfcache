@@ -467,6 +467,63 @@ int libfcache_cache_get_number_of_cache_values(
 	return( 1 );
 }
 
+/* Clears the cache value for the specific index
+ * Returns 1 if successful or -1 on error
+ */
+int libfcache_cache_clear_value_by_index(
+     libfcache_cache_t *cache,
+     int cache_entry_index,
+     libcerror_error_t **error )
+{
+	libfcache_cache_value_t *cache_value       = NULL;
+	libfcache_internal_cache_t *internal_cache = NULL;
+	static char *function                      = "libfcache_cache_clear_value_by_index";
+
+	if( cache == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid cache.",
+		 function );
+
+		return( -1 );
+	}
+	internal_cache = (libfcache_internal_cache_t *) cache;
+
+	if( libcdata_array_get_entry_by_index(
+	     internal_cache->entries_array,
+	     cache_entry_index,
+	     (intptr_t **) &cache_value,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+		 "%s: unable to retrieve cache value: %d from entries array.",
+		 function,
+		 cache_entry_index );
+
+		return( -1 );
+	}
+	if( libfcache_cache_value_clear(
+	     cache_value,
+	     error ) != 1 )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+		 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+		 "%s: unable to clear cache value.",
+		 function );
+
+		return( -1 );
+	}
+	return( 1 );
+}
+
 /* Retrieves the cache value that matches the file index, offset and timestamp
  * Returns 1 if successful, 0 if no such value or -1 on error
  */

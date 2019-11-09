@@ -1068,6 +1068,146 @@ on_error:
 	return( 0 );
 }
 
+/* Tests the libfcache_cache_clear_value_by_index function
+ * Returns 1 if successful or 0 if not
+ */
+int fcache_test_cache_clear_value_by_index(
+     void )
+{
+	uint8_t value_data[ 16 ];
+
+	libcerror_error_t *error = NULL;
+	libfcache_cache_t *cache = NULL;
+	int result               = 0;
+
+	/* Initialize test
+	 */
+	result = libfcache_cache_initialize(
+	          &cache,
+	          16,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "cache",
+	 cache );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_set_value_by_index(
+	          cache,
+	          0,
+	          0,
+	          0,
+	          0,
+	          (intptr_t *) value_data,
+	          &fcache_test_cache_value_free_function,
+	          LIBFCACHE_CACHE_VALUE_FLAG_MANAGED,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	/* Test regular cases
+	 */
+	result = libfcache_cache_clear_value_by_index(
+	          cache,
+	          0,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	/* Test error cases
+	 */
+	result = libfcache_cache_clear_value_by_index(
+	          NULL,
+	          0,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 -1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
+
+	libcerror_error_free(
+	 &error );
+
+	result = libfcache_cache_clear_value_by_index(
+	          cache,
+	          -1,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 -1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "error",
+	 error );
+
+	libcerror_error_free(
+	 &error );
+
+	/* Clean up
+	 */
+	result = libfcache_cache_free(
+	          &cache,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "cache",
+	 cache );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	return( 1 );
+
+on_error:
+	if( error != NULL )
+	{
+		libcerror_error_free(
+		 &error );
+	}
+	if( cache != NULL )
+	{
+		libfcache_cache_free(
+		 &cache,
+		 NULL );
+	}
+	return( 0 );
+}
+
 /* Tests the libfcache_cache_get_value_by_identifier function
  * Returns 1 if successful or 0 if not
  */
@@ -1825,6 +1965,10 @@ int main(
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_get_number_of_cache_values",
 	 fcache_test_cache_get_number_of_cache_values );
+
+	FCACHE_TEST_RUN(
+	 "libfcache_cache_clear_value_by_index",
+	 fcache_test_cache_clear_value_by_index );
 
 	FCACHE_TEST_RUN(
 	 "libfcache_cache_get_value_by_identifier",
