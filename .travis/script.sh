@@ -25,7 +25,7 @@ then
 
 		make install DESTDIR=${PWD}/osx-pkg;
 		mkdir -p ${PWD}/osx-pkg/usr/share/doc/libfcache;
-		cp AUTHORS COPYING NEWS README ${PWD}/osx-pkg/usr/share/doc/libfcache;
+		cp AUTHORS COPYING COPYING.LESSER NEWS README ${PWD}/osx-pkg/usr/share/doc/libfcache;
 
 		pkgbuild --root osx-pkg --identifier com.github.libyal.libfcache --version ${VERSION} --ownership recommended ../libfcache-${VERSION}.pkg;
 	fi
