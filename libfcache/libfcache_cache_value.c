@@ -448,16 +448,19 @@ int libfcache_cache_value_set_value(
 	}
 	internal_cache_value = (libfcache_internal_cache_value_t *) cache_value;
 
-	if( value_free_function == NULL )
+	if( ( flags & LIBFCACHE_CACHE_VALUE_FLAG_MANAGED ) != 0 )
 	{
-		libcerror_error_set(
-		 error,
-		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
-		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
-		 "%s: invalid value free function.",
-		 function );
+		if( value_free_function == NULL )
+		{
+			libcerror_error_set(
+			 error,
+			 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+			 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+			 "%s: invalid value free function.",
+			 function );
 
-		return( -1 );
+			return( -1 );
+		}
 	}
 	if( ( internal_cache_value->flags & LIBFCACHE_CACHE_VALUE_FLAG_MANAGED ) != 0 )
 	{
