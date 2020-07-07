@@ -27,7 +27,6 @@
 #include <stdlib.h>
 #endif
 
-#include "fcache_test_libcerror.h"
 #include "fcache_test_libfcache.h"
 #include "fcache_test_macros.h"
 #include "fcache_test_unused.h"
