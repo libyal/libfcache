@@ -30,7 +30,11 @@
 
 #include <libfcache/extern.h>
 
+#if defined( __CYGWIN__ )
+#define LIBFCACHE_EXTERN_VARIABLE	extern
+#else
 #define LIBFCACHE_EXTERN_VARIABLE	LIBFCACHE_EXTERN
+#endif
 
 #else
 #define LIBFCACHE_EXTERN		/* extern */
