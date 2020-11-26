@@ -52,7 +52,7 @@ enum LIBFCACHE_CACHE_VALUE_FLAGS
 	LIBFCACHE_CACHE_VALUE_FLAG_MANAGED			= 0x01
 };
 
-#endif
+#endif /* !defined( HAVE_LOCAL_LIBFCACHE ) */
 
-#endif
+#endif /* !defined( _LIBFCACHE_INTERNAL_DEFINITIONS_H ) */
 
