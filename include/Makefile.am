@@ -18,9 +18,9 @@ MAINTAINERCLEANFILES = \
 	Makefile.in
 
 distclean: clean
-	/bin/rm -f libfcache.h
-	/bin/rm -f libfcache/definitions.h
-	/bin/rm -f libfcache/features.h
-	/bin/rm -f libfcache/types.h
-	/bin/rm -f Makefile
+	-rm -f libfcache.h
+	-rm -f libfcache/definitions.h
+	-rm -f libfcache/features.h
+	-rm -f libfcache/types.h
+	-rm -f Makefile
 
