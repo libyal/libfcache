@@ -14,13 +14,11 @@ EXTRA_DIST = \
 	libfcache/features.h.in \
 	libfcache/types.h.in
 
-MAINTAINERCLEANFILES = \
+DISTCLEANFILES = \
+	libfcache.h \
+	libfcache/definitions.h \
+	libfcache/features.h \
+	libfcache/types.h \
+	Makefile \
 	Makefile.in
-
-distclean: clean
-	-rm -f libfcache.h
-	-rm -f libfcache/definitions.h
-	-rm -f libfcache/features.h
-	-rm -f libfcache/types.h
-	-rm -f Makefile
 
