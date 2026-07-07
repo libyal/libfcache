@@ -2,7 +2,7 @@ AC_PREREQ([2.71])
 
 AC_INIT(
   [libfcache],
-  [20260624],
+  [20260707],
   [https://github.com/libyal/libfcache/issues])
 
 AC_CONFIG_SRCDIR(
