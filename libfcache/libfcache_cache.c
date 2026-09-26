@@ -981,6 +981,7 @@ int libfcache_cache_set_value_by_index(
      libcerror_error_t **error )
 {
 	libfcache_cache_value_t *cache_value       = NULL;
+	libfcache_cache_value_t *safe_cache_value  = NULL;
 	libfcache_internal_cache_t *internal_cache = NULL;
 	static char *function                      = "libfcache_cache_set_value_by_index";
 
@@ -1011,12 +1012,12 @@ int libfcache_cache_set_value_by_index(
 		 function,
 		 cache_entry_index );
 
-		return( -1 );
+		goto on_error;
 	}
 	if( cache_value == NULL )
 	{
 		if( libfcache_cache_value_initialize(
-		     &cache_value,
+		     &safe_cache_value,
 		     error ) != 1 )
 		{
 			libcerror_error_set(
@@ -1026,10 +1027,10 @@ int libfcache_cache_set_value_by_index(
 			 "%s: unable to create cache value.",
 			 function );
 
-			return( -1 );
+			goto on_error;
 		}
 		if( libfcache_cache_value_set_cache_index(
-		     cache_value,
+		     safe_cache_value,
 		     cache_entry_index,
 		     error ) != 1 )
 		{
@@ -1040,16 +1041,14 @@ int libfcache_cache_set_value_by_index(
 			 "%s: unable to set cache index in cache value.",
 			 function );
 
-			libfcache_cache_value_free(
-			 &cache_value,
-			 NULL );
-
-			return( -1 );
+			goto on_error;
 		}
+		/* The entries array takes over ownership of safe_cache_value
+		 */
 		if( libcdata_array_set_entry_by_index(
 		     internal_cache->entries_array,
 		     cache_entry_index,
-		     (intptr_t *) cache_value,
+		     (intptr_t *) safe_cache_value,
 		     error ) != 1 )
 		{
 			libcerror_error_set(
@@ -1060,12 +1059,11 @@ int libfcache_cache_set_value_by_index(
 			 function,
 			 cache_entry_index );
 
-			libfcache_cache_value_free(
-			 &cache_value,
-			 NULL );
-
-			return( -1 );
+			goto on_error;
 		}
+		cache_value      = safe_cache_value;
+		safe_cache_value = NULL;
+
 		if( libcdata_list_prepend_value(
 		     internal_cache->entries_list,
 		     (intptr_t *) cache_value,
@@ -1076,9 +1074,10 @@ int libfcache_cache_set_value_by_index(
 			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
 			 LIBCERROR_RUNTIME_ERROR_APPEND_FAILED,
 			 "%s: unable to prepend cache value: %d to entries list.",
-			 function );
+			 function,
+			 cache_entry_index );
 
-			return( -1 );
+			goto on_error;
 		}
 	}
 	if( libfcache_cache_value_set_value(
@@ -1095,7 +1094,7 @@ int libfcache_cache_set_value_by_index(
 		 "%s: unable to set value in cache value.",
 		 function );
 
-		return( -1 );
+		goto on_error;
 	}
 	if( libfcache_cache_value_set_identifier(
 	     cache_value,
@@ -1111,8 +1110,17 @@ int libfcache_cache_set_value_by_index(
 		 "%s: unable to set identifier in cache value.",
 		 function );
 
-		return( -1 );
+		goto on_error;
 	}
 	return( 1 );
+
+on_error:
+	if( safe_cache_value != NULL )
+	{
+		libfcache_cache_value_free(
+		 &safe_cache_value,
+		 NULL );
+	}
+	return( -1 );
 }
 
