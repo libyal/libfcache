@@ -802,70 +802,89 @@ int libfcache_cache_set_value_by_identifier(
 	{
 		cache_entry_index = number_of_cache_values;
 
-		if( libfcache_cache_value_initialize(
-		     &cache_value,
-		     error ) != 1 )
-		{
-			libcerror_error_set(
-			 error,
-			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
-			 LIBCERROR_RUNTIME_ERROR_INITIALIZE_FAILED,
-			 "%s: unable to create cache value.",
-			 function );
-
-			return( -1 );
-		}
-		if( libfcache_cache_value_set_cache_index(
-		     cache_value,
-		     cache_entry_index,
-		     error ) != 1 )
-		{
-			libcerror_error_set(
-			 error,
-			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
-			 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
-			 "%s: unable to set cache index in cache value.",
-			 function );
-
-			libfcache_cache_value_free(
-			 &cache_value,
-			 NULL );
-
-			return( -1 );
-		}
-		if( libcdata_array_set_entry_by_index(
+		if( libcdata_array_get_entry_by_index(
 		     internal_cache->entries_array,
 		     cache_entry_index,
-		     (intptr_t *) cache_value,
+		     (intptr_t **) &cache_value,
 		     error ) != 1 )
 		{
 			libcerror_error_set(
 			 error,
 			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
-			 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
-			 "%s: unable to set cache value: %d in entries array.",
+			 LIBCERROR_RUNTIME_ERROR_GET_FAILED,
+			 "%s: unable to retrieve cache value: %d from entries array.",
 			 function,
 			 cache_entry_index );
 
-			libfcache_cache_value_free(
-			 &cache_value,
-			 NULL );
-
 			return( -1 );
 		}
-		if( libcdata_list_prepend_value(
-		     internal_cache->entries_list,
-		     (intptr_t *) cache_value,
-		     error ) != 1 )
+		if( cache_value == NULL )
 		{
-			libcerror_error_set(
-			 error,
-			 LIBCERROR_ERROR_DOMAIN_RUNTIME,
-			 LIBCERROR_RUNTIME_ERROR_APPEND_FAILED,
-			 "%s: unable to prepend cache value: %d to entries list.",
-			 function );
+			if( libfcache_cache_value_initialize(
+			     &cache_value,
+			     error ) != 1 )
+			{
+				libcerror_error_set(
+				 error,
+				 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+				 LIBCERROR_RUNTIME_ERROR_INITIALIZE_FAILED,
+				 "%s: unable to create cache value.",
+				 function );
 
-			return( -1 );
+				return( -1 );
+			}
+			if( libfcache_cache_value_set_cache_index(
+			     cache_value,
+			     cache_entry_index,
+			     error ) != 1 )
+			{
+				libcerror_error_set(
+				 error,
+				 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+				 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+				 "%s: unable to set cache index in cache value.",
+				 function );
+
+				libfcache_cache_value_free(
+				 &cache_value,
+				 NULL );
+
+				return( -1 );
+			}
+			if( libcdata_array_set_entry_by_index(
+			     internal_cache->entries_array,
+			     cache_entry_index,
+			     (intptr_t *) cache_value,
+			     error ) != 1 )
+			{
+				libcerror_error_set(
+				 error,
+				 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+				 LIBCERROR_RUNTIME_ERROR_SET_FAILED,
+				 "%s: unable to set cache value: %d in entries array.",
+				 function,
+				 cache_entry_index );
+
+				libfcache_cache_value_free(
+				 &cache_value,
+				 NULL );
+
+				return( -1 );
+			}
+			if( libcdata_list_prepend_value(
+			     internal_cache->entries_list,
+			     (intptr_t *) cache_value,
+			     error ) != 1 )
+			{
+				libcerror_error_set(
+				 error,
+				 LIBCERROR_ERROR_DOMAIN_RUNTIME,
+				 LIBCERROR_RUNTIME_ERROR_APPEND_FAILED,
+				 "%s: unable to prepend cache value: %d to entries list.",
+				 function );
+
+				return( -1 );
+			}
 		}
 	}
 	else

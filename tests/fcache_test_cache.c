@@ -1570,6 +1570,7 @@ int fcache_test_cache_set_value_by_identifier(
 	libcerror_error_t *error             = NULL;
 	libfcache_cache_t *cache             = NULL;
 	libfcache_cache_value_t *cache_value = 0;
+	int number_of_cache_values           = 0;
 	int result                           = 0;
 
 	/* Initialize test
@@ -1612,6 +1613,129 @@ int fcache_test_cache_set_value_by_identifier(
 	FCACHE_TEST_ASSERT_IS_NULL(
 	 "error",
 	 error );
+
+	/* Test regular cases, interleaved with a value that is set by index,
+	 * such that a new cache value is allocated to an already occupied
+	 * entry index. The occupied cache value must be reused, not orphaned.
+	 */
+	result = libfcache_cache_set_value_by_index(
+	          cache,
+	          3,
+	          0,
+	          99,
+	          0,
+	          (intptr_t *) value_data,
+	          &fcache_test_cache_value_free_function,
+	          LIBFCACHE_CACHE_VALUE_FLAG_MANAGED,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_set_value_by_identifier(
+	          cache,
+	          0,
+	          1,
+	          0,
+	          (intptr_t *) value_data,
+	          &fcache_test_cache_value_free_function,
+	          LIBFCACHE_CACHE_VALUE_FLAG_MANAGED,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_set_value_by_identifier(
+	          cache,
+	          0,
+	          2,
+	          0,
+	          (intptr_t *) value_data,
+	          &fcache_test_cache_value_free_function,
+	          LIBFCACHE_CACHE_VALUE_FLAG_MANAGED,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_set_value_by_identifier(
+	          cache,
+	          0,
+	          3,
+	          0,
+	          (intptr_t *) value_data,
+	          &fcache_test_cache_value_free_function,
+	          LIBFCACHE_CACHE_VALUE_FLAG_MANAGED,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_get_number_of_cache_values(
+	          cache,
+	          &number_of_cache_values,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "number_of_cache_values",
+	 number_of_cache_values,
+	 3 );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	result = libfcache_cache_get_value_by_identifier(
+	          cache,
+	          0,
+	          3,
+	          0,
+	          &cache_value,
+	          &error );
+
+	FCACHE_TEST_ASSERT_EQUAL_INT(
+	 "result",
+	 result,
+	 1 );
+
+	FCACHE_TEST_ASSERT_IS_NOT_NULL(
+	 "cache_value",
+	 cache_value );
+
+	FCACHE_TEST_ASSERT_IS_NULL(
+	 "error",
+	 error );
+
+	cache_value = 0;
 
 	/* Test error cases
 	 */
